@@ -1,0 +1,164 @@
+#head_mweb("领取券")
+<style>
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color: #f1c2a4;
+    }
+
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #f1c2a4;
+    }
+
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #f1c2a4;
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #f1c2a4;
+    }
+
+    input:focus {
+
+    }
+    .am-modal {
+        width: 90%;
+        left: 5%;
+        margin-left: auto;
+    }
+</style>
+        </head>
+
+<body class="hide"
+      style="background: url('$base/mweb/assets/images/earn/bg-red.jpg') no-repeat;background-size: 100% 100%;">
+<section class="text-white am-text-center ">
+    <!--title-->
+    <div class="am-padding-top-lg am-padding-bottom-sm">
+        <div style="color: #f7cb6d" class="am-text-xl" id="brandName"></div>
+    </div>
+    <!--name-->
+    <div class="am-padding am-text-left">
+        <div>
+            <img src="$base/mweb/assets/images/earn/red1.png" class="am-g"/>
+            <div style="background: #faeede;overflow: hidden" class="am-padding-horizontal am-padding-vertical-xs">
+                <div class="" style="color: #dd4a4a;">
+                    <div style="position: relative;top:0;" class="am-g">
+                        <img src="$base/mweb/assets/images/earn/horn.png" style="width: 50%;margin-right: -2%"/>
+                        <img src="$base/mweb/assets/images/earn/horn.png" class="rotate1"
+                             style="width: 50%;"/>
+                    </div>
+                    <!--实物券-->
+                    <div style="position: relative;top:-10%;margin: -42% 10%;font-style: italic"
+                         class="am-text-center hide" id="object">
+                        <div class="am-text-xxxl am-vertical-align-middle">
+                            <strong id="name"></strong>
+                        </div>
+                        <div class="am-margin-left-xs am-vertical-align-middle">
+                            <strong class="am-text-lg" style="text-decoration: line-through;">原价￥<span id="old"></span></strong>
+                            <strong class="am-text-xl">现价<span id="new"></span></strong>
+                        </div>
+                    </div>
+                    <!--实物券-->
+                    <!--代金券-->
+                    <div style="position: relative;left:0;top:0;margin: -50% 10%;font-style: italic"
+                         class="am-text-center hide" id="money">
+                        <div class="am-g am-g-collapse am-cf am-u-end" style="margin-top: 15%;margin-bottom: -50%">
+                            <div style="" class="am-u-sm-4">
+                                <div class=" am-text-lg "><strong>代金券</strong></div>
+                                <div><img src="$base/mweb/assets/images/earn/yuan.png" class="am-text-right"
+                                          style="width: 40%">
+                                </div>
+                            </div>
+                            <div class="am-u-sm-8" id="img">
+                                <img src="$base/mweb/assets/images/earn/1.png" class="am-fl" style="width: 30%">
+                            </div>
+                        </div>
+                    </div>
+                    <!--代金券-->
+
+                    <div style="position: relative;top:0;" class="am-g">
+                        <img src="$base/mweb/assets/images/earn/horn.png" class="flipy"
+                             style="width: 50%;margin-right: -2%"/>
+                        <img src="$base/mweb/assets/images/earn/horn.png" class="rotate2"
+                             style="width: 50%;">
+                    </div>
+                </div>
+            </div>
+            <img src="$base/mweb/assets/images/earn/red1.png" class="am-g flipy">
+        </div>
+    </div>
+    <div style="background: url('$base/mweb/assets/images/earn/repeaty.png') repeat-y;background-size: contain;margin: 0 10px;"
+         class="">
+    </div>
+    <!--input-->
+    <div class="am-padding">
+        <input type="tel" class="am-g button_border border-radius am-text-lg" style="height: 53px"
+               placeholder="输入手机号领取到上宾账号" id="input" pattern="/^\s*1\d{10}\s*$/" required/>
+    </div>
+    <!--button-->
+    <div class="am-g" style="margin-bottom: 50px">
+        <div class="am-u-sm-centered am-u-sm-9">
+            <button class="am-btn-block am-padding-sm am-text-lg" type="submit" id="submit_number"
+                    style="border: 1px solid #f25d55;border-radius: 18px;background: #ff6960">确认领取
+            </button>
+        </div>
+    </div>
+
+    <div style="position: fixed;bottom: 10px;left: 0;right: 0;text-shadow:2px 2px 2px #000;" class="am-text-xs"
+         id="grey">上宾 灰常酷的特权管理工具
+    </div>
+</section>
+
+
+<script>
+    j(function () {
+        var id = window.location.search.substring(3);
+        rest("benefit.tempcoupon.get", {id: id}, function (data) {
+            if (data.RESULT_CODE == 0) {
+                if (data.RESULT_DATA.code == 200) {
+                    var result = data.RESULT_DATA.result;
+                    j("#brandName").html(result.brandName);
+                    j.cookie("type", result.category, {path: "/"});
+                    if (result.category == 901) {
+                        //代金券
+                        var number = result.value + "";
+                        var img = j("#img").html();
+                        var value = "";
+                        img = img.replace(30, parseInt(100 / number.length) > 40 ? 40 : parseInt(100 / number.length));
+                        for (var i = 0; i < number.length; i++) {
+                            value += img.replace(1, number.charAt(i));
+                        }
+                        j("#img").html(value);
+                        j("#money").show();
+                    } else {
+                        //实物券
+                        j("#name").html(result.name);
+                        j("#old").html(result.amount);
+                        result.currentAmount ? j("#new").html("￥" + result.currentAmount) : j("#new").html(" 免费");
+                        j("#choose_text").attr("src", "/mweb/assets/images/earn/text.png");
+                        j("#object").show();
+                    }
+                } else {
+                    msg(data.RESULT_DATA.message);
+                }
+            }
+        }, function () {
+            msg("系统请求错误!");
+        });
+        j("input").focus(function () {
+            j("#grey").hide();
+        });
+        j("input").blur(function () {
+            j("#grey").show();
+        });
+        setTimeout( j("body").show(),2000);
+
+        j("#submit_number").click(function () {
+            submit(id, "benefit.tempcoupon.post")
+        })
+    });
+
+
+</script>
+#foot_mweb()
+
+
+

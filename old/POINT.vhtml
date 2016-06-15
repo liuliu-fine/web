@@ -1,0 +1,255 @@
+#head_mweb("上宾-活动详情")
+        #titlebar("活动详情")
+<div class="am-padding-sm hide" id="total">
+    <section id="get">
+        <div id="am-title">
+            <img src="$base/mweb/assets/images/POINT.png" id="img" class="icon" alt="券"/>
+            <span class="padding-xxs" id="title"></span>
+        </div>
+        <div class="am-padding-top am-text-center text-grey">
+
+            <span class="star bg"></span>&nbsp;<span id="am-name"></span>&nbsp;
+            <span class="star bg"></span>
+        </div>
+        <div class="border-radius am-margin-vertical-sm am-padding-sm"
+             style="background:url('$base/mweb/assets/images/oval.png') repeat-x bottom;border: solid #f0f0f0;border-width: 5px 2px 0 2px;">
+            <div id="activity-title">
+                <div class="text-orange am-padding-top-sm">
+                    @class@
+                </div>
+                <div id="activity-content">
+                    <div class="am-text-sm " style="padding: 5px auto">
+                        <i class="iconfont">&#xe60e;</i>@content@
+                    </div>
+
+                    <div id="coupon">
+                        <section id="tmp-coupon-charge">
+                            <a href="@id@">
+                                <div class="border am-margin-bottom-xs">
+                                    <div class=" am-g am-g-collapse am-nbfc">
+                                        <div class="am-u-sm-9">
+                                            <div class="am-padding-sm">
+                                                @@name@@
+                                                <div class="text-grey am-text-xs">@@effectTimes@@</div>
+                                            </div>
+                                        </div>
+                                        <div class="am-u-sm-3 equal-height text-white am-text-center ">
+                                            <div style="background-color: #ff534f;"
+                                                 class="equal-height am-padding-vertical-sm">
+                                                <!--<img src="assets/images/dollar.png" alt="dollar">-->
+                                                <div class="bg dollar"></div>
+
+                                                <div class="am-text-xs am-margin-top-xs">代金券</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+
+                        <section id="tmp-coupon-consume">
+                            <a href="@id@">
+                                <div class="border am-margin-bottom-xs border-radius">
+                                    <div class=" am-g am-g-collapse am-nbfc">
+                                        <div class="am-u-sm-9">
+                                            <div class="am-padding-sm">
+                                                @@name@@
+                                                <div class="text-grey am-text-xs">@@effectTimes@@</div>
+                                            </div>
+                                        </div>
+                                        <div class="am-u-sm-3 equal-height text-white am-text-left">
+                                            <div style="background: #df3121;border-radius: 0 5px;"
+                                                 class="equal-height">
+                                                <img src="$base/mweb/assets/images/gold.png" alt="dollar" style="width: 100%">
+
+                                                <div class="am-padding-sm am-padding-top-0"
+                                                     style="color: #fce243;font-style: italic">
+                                                    <div class="am-text-xs" style="text-decoration: line-through">
+                                                        ￥@@amount@@
+                                                    </div>
+                                                    <div style="line-height: 16px" class="am-text-lg">@@currentAmount@@
+                                                        <div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+            <div class="second-title am-margin-vertical" style="height: 2px;"></div>
+            <div class="am-text-sm text-grey" id="condition">
+                <div class="am-g" id="time">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe60f;</i>
+                    </div>
+                    <div class="text-orange" style="margin-left:25px;">
+                        @time@
+                    </div>
+                </div>
+                <div class="am-g" id="periods">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe610;</i>
+                    </div>
+                    <div style="margin-left:25px;">
+                        @periods@
+                    </div>
+                </div>
+
+                <div class="am-g" id="shops">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe602;</i>
+                    </div>
+                    <div style="margin-left:25px;">
+                        @shops@
+                    </div>
+                </div>
+                <div class="am-g" id="shared">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe614;</i>
+                    </div>
+                    <div style="margin-left:25px;">
+                        @shared@
+                    </div>
+                </div>
+                <div class="am-g" id="nonParticipations">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe611;</i>
+                    </div>
+                    <div style="margin-left:25px;">
+                        @nonParticipations@
+                    </div>
+                </div>
+                <div class="am-g" id="limit">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe604;</i>
+                    </div>
+                    <div style="margin-left:25px;" id="limit-content">
+                        <div>
+                            @limit@
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <section id="used">
+        <div class="am-padding-top am-text-center text-grey">
+
+            <span class="star bg"></span>&nbsp;<span id="am-name1"></span>&nbsp;
+            <span class="star bg"></span>
+        </div>
+
+        <div class="border-radius am-margin-vertical-sm am-padding-sm"
+             style="background:url('$base/mweb/assets/images/oval.png') repeat-x bottom;border: solid #f0f0f0;border-width: 5px 2px 0 2px;">
+            <div id="activity-title1">
+                <div class="text-shit">
+                    @class@
+                </div>
+                <div id="activity-content1">
+                    <div class="am-text-sm">
+                        <i class="iconfont">&#xe60e;</i>@content@
+                    </div>
+                    @coupon@
+                </div>
+            </div>
+            <div class="second-title am-margin-vertical" style="height: 2px;"></div>
+            <div class="am-text-sm text-grey" id="condition1">
+                <div class="am-g" id="time1">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe60f;</i>
+                    </div>
+                    <div class="text-shit" style="margin-left:25px;">
+                        @time@
+                    </div>
+                </div>
+
+                <div class="am-g" id="periods1">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe610;</i>
+                    </div>
+                    <div style="margin-left:25px;">
+                        @periods@
+                    </div>
+                </div>
+
+                <div class="am-g" id="shops1">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe602;</i>
+                    </div>
+                    <div style="margin-left:25px;">
+                        @shops@
+                    </div>
+                </div>
+                <div class="am-g" id="shared1">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe614;</i>
+                    </div>
+                    <div style="margin-left:25px;">
+                        @shared@
+                    </div>
+                </div>
+                <div class="am-g" id="nonParticipations1">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe611;</i>
+                    </div>
+                    <div style="margin-left:25px;">
+                        @nonParticipations@
+                    </div>
+                </div>
+                <div class="am-g" id="limit1">
+                    <div style="margin-right:-25px;" class="am-fl">
+                        <i class="iconfont">&#xe604;</i>
+                    </div>
+                    <div style="margin-left:25px;" id="limit-content1">
+                        <div>
+                            @limit@
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+<section class="hide" id="getCoupon">
+<div style="height: 45px"></div>
+<div class="am-g bg-white" id="button" style="position: fixed;bottom: 0;">
+    <hr/>
+    <div class="am-g am-margin-vertical-sm ">
+        <div class="am-u-sm-12  am-text-center">
+            <button class="am-u-sm-10 am-u-sm-offset-1 am-btn am-radius bg-orange text-white">
+                领取优惠券
+            </button>
+        </div>
+    </div>
+
+</div>
+</section>
+<section class="hide" id="getCharge">
+<div style="height: 45px"></div>
+<div class="am-g bg-white" style="position: fixed;bottom: 0;">
+    <hr/>
+    <div class="am-g am-margin-vertical-sm ">
+        <div class="am-u-sm-12 am-text-center">
+            <a data-am-modal="{target: '#alert'}">
+                <button class="am-u-sm-10 am-u-sm-offset-1 am-btn am-radius bg-orange text-white">
+                    去充值
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+</section>
+<div id="modal-confirm"></div>
+<div id="modal-alert"></div>
+<script  type="application/javascript" src="$base/mweb/assets/js/dest/point.js"></script>
+        #foot_mweb()

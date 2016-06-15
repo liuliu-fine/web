@@ -1,0 +1,52 @@
+#head_mweb("上宾-券详情")
+        #titlebar("券详情")
+<body>
+<div style="height: 40px"></div>
+<div class="am-u-sm-11 am-u-sm-centered"
+     style="background: #736f6f;border-radius: 30px;height: 30px;padding: 13px 15px 0">
+    <div style="height: 2px;background: #535353"></div>
+    <div style="height: 2px;background: #eceaea"></div>
+    <div class="am-padding-xs am-padding-bottom am-text-center"
+         style="background: url('$base/mweb/assets/images/coupon-outer.png') repeat-x;background-size:auto 100% ">
+        <div class="am-padding-sm am-margin"
+             style="background: url('$base/mweb/assets/images/coupon-inner.png') repeat-y;background-size: 100%">
+            <div style="border: 1px white solid " class="text-white">
+                <div style="background:#ea4d49;">
+                    <div id="coupon-name" class="am-padding am-padding-bottom-0 am-text-xxl">
+                    </div>
+                    <div id="coupon-code" class="am-text-lg am-padding-sm" style="color: white"></div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="am-text-left am-padding-horizontal">
+        </div>
+    </div>
+</div>
+<script>
+    var url = "";
+    var query = "";
+    if (window.location.search.substr(0, 1) == "?") {
+        url = "benefit.coupon.get";
+        query = window.location.search.substr(1);
+    }
+    if (window.location.hash.substr(0, 1) == "#") {
+        url = "benefit.usercoupon.get";
+        query = window.location.hash.substr(1);
+    }
+    rest(url, {"shopId": SHOPID, "id": query}, function (data) {
+        if (data.RESULT_DATA.code == 200) {
+            var result = data.RESULT_DATA.result;
+            j("#coupon-name").html(result.name);
+            if (result.category == "902" || result.code) {
+                j("#coupon-code").html(result.code);
+            }
+            var content = "";
+            for (var o in result.content) {
+                content += '<div>' + result.content[o] + '</div>';
+            }
+            j("#content").html(content);
+        }
+    });
+
+</script>
+#foot_mweb()

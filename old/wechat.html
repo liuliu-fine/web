@@ -1,0 +1,28 @@
+<html>
+<body>
+<div id="test">test</div>
+
+<!--分别打开jquery和zepto-->
+
+<!--<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"></script>-->
+<script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+
+<script>
+
+    //开始时间
+    startTime=new Date().getTime();
+
+    //执行10000次取节点的操作
+    for (var i = 0; i < 1000; i++) {
+        $('#test');
+    };
+
+    //结束时间
+    endTime=new Date().getTime();
+
+    //执行需要时间
+    alert( endTime - startTime);
+
+</script>
+</body>
+</html>

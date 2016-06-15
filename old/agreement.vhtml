@@ -1,0 +1,12 @@
+#header_mweb("上宾-协议")
+<div class="container">
+    <iframe id="workIFrame" scrolling="yes" frameborder="0" marginwidth="0" marginheight="0" name="workIFrame"
+            width="100%" src="http://sharejoy.cn/agreement/agreement.html"></iframe>
+</div>
+<script>
+j("body").addClass("bg");
+j("#workIFrame").height(screen.height);
+
+titlebar("上宾服务条款", true);
+</script>
+        #footer_mweb()

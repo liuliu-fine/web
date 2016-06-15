@@ -1,0 +1,25 @@
+.tabs span{
+	display:inline-block;
+	margin-bottom:-1px;
+	margin-right:5px;
+	width:100px;
+	text-align:center;			
+	border: 1px solid #99BBE8;
+	border-bottom:none;
+}
+.tabs span a{
+	display:block;
+}
+.tabs span a.current{
+	font-weight:bold;
+	background-image: url(images/hbg.gif);
+}
+.panes {
+	margin-top:-1px !important;
+	margin-top:0;
+	padding:10px;	
+	border:1px #99BBE8 solid;
+}
+.panes div{
+	display:none;
+}

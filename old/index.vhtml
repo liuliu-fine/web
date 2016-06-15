@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content="商家 活动 折扣"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+    <title>上宾-商户首页</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit"/>
+
+    <!-- No Baidu Siteapp-->
+    <!-- <meta http-equiv="Cache-Control" content="no-siteapp"/>-->
+
+    <link rel="icon" type="image/png" href="/mweb/assets/i/favicon.png"/>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes"/>
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-title" content="SHANGBIN"/>
+
+    <link rel="stylesheet" href="/mweb/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/mweb/assets/css/common.min.css"/>
+    <script src="/common/js/jquery-1.9.1.min.js"></script>
+    <!--<script src="https://lib.sinaapp.com/js/zepto/1.0/zepto.min.js"></script>-->
+    <script src="/mweb/assets/js/amazeui/amazeui.min.js"></script>
+    <script src="/common/js/jquery.cookie.min.js"></script>
+    <!--<script src="/common/js/jquery.md5.js"></script>-->
+    <script src="/mweb/js/mweb.min.js"></script>
+
+    <!-- CONTEXT -->
+    <script type="text/javascript" language="javascript">
+        if(!navigator.cookieEnabled){
+            location.href="/mweb/miss_cookie.html";
+        }
+        var CONTEXT = "";
+        var SHOPID = j.cookie("shopId");
+        if(!j.cookie("token")){
+            if (location.search) {
+                var arr = location.search.split("&");
+                var json = {};
+                json.code = arr[0].split("=")[1];
+                json.appid = arr[2].split("=")[1];
+                json.shopId = SHOPID;
+                rest("auth.shop.login.post", json, function (data) {
+                    j.cookie("token",data.RESULT_DATA.result.token,{"path":"/"});
+                    location.href = j.cookie("url")?j.cookie("url"):"index.vhtml";
+                    j.cookie("url","",{"expire":0,"path":"/"});
+                });
+            } else {
+                rest("auth.shop.post", {"shopId": SHOPID, url: location.href}, function (data) {
+                    if(data.RESULT_DATA.code == 200) {
+                        location.href = data.RESULT_DATA.result.url;
+                    }else{
+                        location.href = "error.vhtml";
+                    }
+                });
+            }
+
+        }
+        var TOKEN = j.cookie("token");
+    </script>
+
+</head>
+<body class="">
+<div class="loader-bg">
+    <div class="loader"></div>
+    正在加载 ...
+</div>
+<section id="total" class="hide">
+    <!--固定标题栏-->
+    <div style="position: fixed;z-index: 100" class="am-g am-hide" id="headerDiv">
+        <header data-am-widget="header" class="am-header am-header-default bg-white">
+            <div class="am-header-left " style="width: 65%">
+                <div class="text-black am-text-truncate" id="menu-name"></div>
+            </div>
+            <div class="am-header-right am-header-nav am-dropdown text-black logic hide" data-am-dropdown>
+                <a class="am-dropdown-toggle " href="#" data-am-dropdown-toggle>
+                    <button class="border-radius am-btn button1 am-text-truncate am-padding-horizontal-0"
+                            data-am-dropdown-toggle>
+                        <span class="bg admin"></span><span id="user-name"></span>
+                    </button>
+                </a>
+                <ul class="am-dropdown-content am-radius am-text-center">
+                    <li><a href="forgetpassword.vhtml">重置密码</a></li>
+                    <li class="am-divider"></li>
+                    <li id="user-birth"><a href="birthdayedit.vhtml">补全生日</a></li>
+                    <li class="am-divider"></li>
+                    <li><a class="logic_out" href="javascript:logout();">登出</a></li>
+                </ul>
+            </div>
+            <div class="am-header-right am-header-nav text-black unlogic">
+                有账号?
+                <a href="login.vhtml" class="text-orange" id="logic">直接登录</a>
+            </div>
+        </header>
+        <hr/>
+    </div>
+    <!--背景图案介绍-->
+    <div style="background: url('$base/mweb/assets/images/bg-real.png') no-repeat;background-size: cover" id="shop">
+        <div class="am-padding am-header am-text-right">
+            <a href="login.vhtml">
+                <button class="border-radius am-btn back" id="unlogic1" style="padding: 5px 12px;
+               color: white;">
+                    <span class="bg admin "></span>
+                    有账号?直接登录
+                </button>
+            </a>
+
+            <div class="am-header-right am-header-nav am-dropdown text-black hide" id="logic1" data-am-dropdown>
+                <a class="am-dropdown-toggle " href="#" data-am-dropdown-toggle>
+                    <button class="border-radius am-btn back" style=" padding: 5px 12px;
+                   color: white;">
+                        <span class="bg admin "></span>
+                        <span id="user-name1"></span>
+                    </button>
+                </a>
+                <ul class="am-dropdown-content am-radius am-text-center">
+                    <li><a href="forgetpassword.vhtml">重置密码</a></li>
+                    <li class="am-divider"></li>
+                    <li id="user-birth1"><a href="birthdayedit.vhtml">补全生日</a></li>
+                    <li class="am-divider"></li>
+                    <li><a class="logic_out" href="javascript:logout();">登出</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="am-text-center  am-padding-bottom-sm">
+            <div class="back am-u-sm-11 border-radius am-u-sm-centered am-text-left">
+                <div class="box am-text-lg am-padding-bottom-sm" id="shop-name">
+
+                </div>
+                <div class="am-text-xs text-white">
+                    <div class="flag-border am-fl" id="shop-avgprice"></div>
+                    <div class="flag-border am-fl" id="shop-table"></div>
+                    <div class="flag-border am-fl" id="shop-biztime"></div>
+                    <div class="flag-border am-fl" id="shop-opentime"></div>
+                </div>
+                <div class="am-cf">
+                </div>
+                <div class="bg test"></div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <!--下载广告-->
+    <a href="http://sharejoy.cn/download/">
+        <div class="am-text-center am-center am-text-xs am-padding-sm">
+            <span class="am-padding-xs">下载上宾APP，尊享智付体验，特权由你</span>
+            <span class="download bg" style="padding-top: 4px"></span>
+        </div>
+    </a>
+
+    <div class="title am-text-center am-cf">
+        <span class="star bg"></span> &nbsp;&nbsp;活动进行中&nbsp;&nbsp;
+        <span class="star bg"></span>
+    </div>
+
+    <a href="vip.vhtml">
+        <div class="am-padding-vertical am-cf" id="no-vip"
+             style="background: url('$base/mweb/assets/images/leftColor.png') no-repeat; background-size: contain">
+            <div class="am-g am-inline">
+                <div class="am-u-sm-1">
+                    <svg class="icon">
+                        <use xlink:href="$base/mweb/assets/i/sprite.svg#VIP2"></use>
+                    </svg>
+               </div>
+                <div class="am-u-sm-6 am-padding-left am-text-sm">
+                    <span class="name"></span>
+                </div>
+                <div class="am-u-sm-5 text-grey am-text-xs am-text-right am-padding-right-xl" style="line-height:2rem ">
+                    <div class="am-text-truncate participants"></div>
+                    <div class="am-fr activity-arrow"><i class="iconfont">&#xe605;</i></div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="power.vhtml" class="am-cf">
+        <div class="am-g am-padding-vertical hide am-cf" id="vip"
+             style="background: url('$base/mweb/assets/images/bg3.png') no-repeat;background-size: contain">
+            <div class=" am-u-sm-offset-1 am-u-sm-9 am-padding-left am-text-sm name"></div>
+            <div class="am-u-sm-2 text-grey am-text-xs am-inline">
+                <div class="am-fr activity-arrow"><i class="iconfont">&#xe605;</i></div>
+            </div>
+        </div>
+    </a>
+
+    <div class="am-cf" id="exchange-activity">
+        <hr/>
+        <a href="exchange.vhtml">
+            <div class="am-padding-vertical am-cf">
+                <div class="am-g am-inline">
+                    <div class="am-u-sm-1">
+                        <svg class="icon">
+                            <use xlink:href="$base/mweb/assets/i/sprite.svg#EXCHANGE2"></use>
+                        </svg>
+                     </div>
+                    <div class="am-u-sm-6 am-padding-left am-text-sm">
+                        <span class="name"></span>
+
+                        <div class="text-grey am-text-xs time"></div>
+                    </div>
+                    <div class="am-u-sm-5 text-grey am-text-xs am-text-right am-padding-right-xl"
+                         style="line-height:2rem ">
+                        <div class="am-text-truncate participants"></div>
+                        <div class="am-fr activity-arrow"><i class="iconfont">&#xe605;</i></div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div id="activeActivities" class="am-cf">
+    </div>
+    <hr/>
+    <div class="am-text-center am-padding-xs text-grey am-text-xs" id="more" style="background: #f9f9f9">
+        更多优惠 ▼
+    </div>
+    <div class="title am-text-center" id="activity-title">
+        <span class="star bg"></span> &nbsp;&nbsp;买单可享&nbsp;&nbsp;
+        <span class="bg star"></span>
+    </div>
+
+    <div class="text-grey am-text-xs time"></div>
+    <!--活动-->
+    <div id="activities">
+    </div>
+
+    <div class="title am-text-center">店铺相关</div>
+    <div class="">
+        <div class="am-padding"><i class="iconfont text-grey">&#xe604;</i>
+            <span class="padding-xxs" id="shop-address"></span>
+        </div>
+        <hr/>
+        <a href="tel:#" id="shop-tel">
+            <div class="am-padding"><i class="iconfont text-grey">&#xe603;</i>
+                <span class="padding-xxs" id="shop-phone"></span>
+                <span class="am-fr"> <i class="iconfont">&#xe605;</i></span>
+            </div>
+        </a>
+        <hr/>
+        <a href="shops.vhtml?other">
+            <div class="am-padding"><i class="iconfont text-grey">&#xe602;</i>
+                <span class="padding-xxs" id="shop-num"></span>
+                <span class="am-fr"> <i class="iconfont">&#xe605;</i></span>
+            </div>
+        </a>
+    </div>
+    <div class="title am-text-center">往来上宾</div>
+    <div class="am-g" id="wanglai">
+        <div class="am-padding">
+            <div class="am-inline" id="user-avatar"></div>
+            <i class="iconfont text-grey" id="over">&#xe601;</i>
+            <span class="am-fr text-grey" id="user-num"></span>
+        </div>
+    </div>
+    <div style="height: 70px" class="second-title"></div>
+    <div class="am-g  bg-white" style="position: fixed;bottom: 0;">
+        <hr/>
+        <div class="am-g am-margin-vertical-sm ">
+            <div class="am-u-sm-12  am-text-center">
+                <a href="login.vhtml?prompt" id="power">
+                    <button class="am-u-sm-10 am-u-sm-offset-1 am-btn am-radius bg-orange text-white">
+                        召唤特权
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<div id="modal-confirm"></div>
+<script type="application/javascript" src="$base/mweb/assets/js/index.js"></script>
+
+#foot_mweb()

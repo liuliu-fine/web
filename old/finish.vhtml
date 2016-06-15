@@ -1,0 +1,48 @@
+#head_mweb("领取完成")
+<style>
+    ul li {
+        list-style-type: none;
+        list-style-image: url("$base/mweb/assets/images/earn/dot.png");
+        line-height:1.8;
+
+
+    }
+</style>
+        </head>
+<body>
+<div style="margin: 75px 0 34px 0" class="am-text-center">
+    <img style="width: 80px" src="$base/mweb/assets/images/earn/bills.png"/>
+    <strong style="vertical-align: middle;margin-left: 20px">领取成功！</strong>
+</div>
+<div class="am-padding-left am-cf am-text-sm am-margin">
+    <ul>
+        <li>权益已存至您的“上宾账号”；</li>
+        <li>新用户需30日内激活上宾账号，方可使用~</li>
+    </ul>
+</div>
+<div class="am-padding">
+    <button id="click" class="am-u-sm-8 am-u-sm-offset-2 am-btn-xl am-btn  bg-orange text-white"
+            style="border-radius: 25px;">
+        立即查看
+    </button>
+</div>
+<div class="am-margin-xs" style=" border-top: 1px dashed #dedede;position: fixed;bottom: 0">
+    <div class="am-padding am-margin-left text-grey">小贴士
+        <div class="am-text-sm" style="line-height: 40px">①登录账号后可查看权益使用说明；</div>
+        <div class="am-text-sm" id="coupon"></div>
+    </div>
+</div>
+<script>
+    j(function () {
+        if(j.cookie("type") == "901"){
+            j("#coupon").html("②上宾用户可直接报手机号行使特权哦~");
+        }else{
+            j("#coupon").html("②本权益请在消费前出示使用");
+        }
+        j("#click").click(function () {
+            window.location.href = localStorage.token ? "power.vhtml" : "login.vhtml";
+        });
+    })
+
+</script>
+#foot_mweb()

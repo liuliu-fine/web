@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+</head>
+<body>
+<a id="token">获取token
+</a>
+<button id="sao">扫码</button>
+<br/>
+<button id="attention">扫描且关注</button>
+<br/>
+<button id="openLocation">地理位置</button>
+<button id="login">登陆</button>
+
+<script src="https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="js/sha.js"></script>
+<!--<script src="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx15047a86b08e0651&redirect_uri=https%3a%2f%2fm.ishangbin.com%2fmweb%2ftest.html&response_type=code&scope=snsapi_userinfo&state=STATE&#wechat_redirect"></script>-->
+<script>
+    $.ajax({
+        url:"auth.shop.post",
+        async:false,
+        type:"post",
+        data:{"shopId":"d46170e19ef34011a8673a4f1ee96ba1"},
+        success:function(data){
+console.log(1);
+        }
+
+    })
+    var h = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx15047a86b08e0651&secret=6a7c601499406ed834fa44d8d811a0a8&" + location.search.substr(1).split("&")[0] + "&grant_type=authorization_code";
+//    htmlobj = $.ajax({url: h, async: false});
+
+    var appid = "wx15047a86b08e0651";
+    var secret = "6a7c601499406ed834fa44d8d811a0a8";
+    //1.获取token
+    //"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid + "&secret" + secret;
+    var access_token = "ICy92ddyC4-IShAItng-N_sxkdxkjmxcIHnHMkW8gKZBC2hRDyOI1dWql-a-eIc-u_EDBDiWPUYBEjWM8-8-XlaBfpdFFlaEMTXYkXbPIi_y8gFuxxmAb-jyfcDwplFPAHUiAGAPWJ";
+    //2.获得jsapi_ticket
+    //https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=bk-jRMnWH7KaUkYltHoIyxgneZvy-rHwK0WIHs6tw16G-Y1GCpPFV_0zt-RSM28jGDTEQaVxKA7bsy-y1quD9aVBRjCvp19xWgXVOfdeVD9C6nyVUFE6_DM8iBUGnbKIXFNfAJAFNV&type=jsapi
+    var ticket = "bxLdikRXVbTPdHSM05e5uxi7rh3uiRsZNgryKhU9D3QbSG5LN_lJxA4ahjqXIiKlWfWWeiTDPzmeS-Ckd1W4Sg";
+    var nonceStr = "ftaRdlUdkpOUaaga";
+    var timestamp = new Date().getTime()+"";
+    var signature = "jsapi_ticket=" + ticket + "&noncestr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + location.href;
+    wx.config({
+        debug: false,
+        appId: appid,
+        timestamp: timestamp,
+        nonceStr: nonceStr,
+        signature: hex_sha1(signature),
+        jsApiList: [
+            'scanQRCode',
+            'chooseWXPay',
+            'openProductSpecificView',
+            'addCard',
+            'chooseCard',
+            'openCard',
+            'openLocation',
+            'chooseImage'
+        ]
+    });
+//user/Author/guestid /shop/shopid
+
+//    wx.ready(function () {
+//        //扫码
+//        document.querySelector('#sao').onclick = function () {
+//            wx.scanQRCode({
+//                needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+//                scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+//                success: function (res) {
+//                    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+//                }
+//            });
+//        }
+//
+//        //关注
+//        document.querySelector('#attention').onclick = function () {
+//            wx.chooseImage({
+//                count: 1, // 默认9
+//                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+//                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+//                success: function (res) {
+//                    var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+//                }
+//            });
+//        }
+//        document.querySelector('#openLocation').onclick = function () {
+//            wx.openLocation({
+//                latitude: 23.099994,
+//                longitude: 113.324520,
+//                name: 'TIT 创意园',
+//                address: '广州市海珠区新港中路 397 号',
+//                scale: 14,
+//                infoUrl: 'http://weixin.qq.com'
+//            });
+//        };
+//    });
+
+    document.querySelector('#sao').onclick = function () {
+        wx.scanQRCode({
+            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+            success: function (res) {
+                var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                location.href = result;
+                alert(JSON.stringify(res));
+            }
+        });
+    }
+
+    //关注
+    document.querySelector('#attention').onclick = function () {
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                alert(JSON.stringify(res));
+            }
+        });
+    }
+    document.querySelector('#openLocation').onclick = function () {
+        wx.openLocation({
+            latitude: 23.099994,
+            longitude: 113.324520,
+            name: 'TIT 创意园',
+            address: '广州市海珠区新港中路 397 号',
+            scale: 14,
+            infoUrl: 'http://weixin.qq.com'
+        });
+    };
+</script>
+</body>
+</html>

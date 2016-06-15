@@ -1,0 +1,102 @@
+#header_mweb("上宾-登录")
+<div class="container">
+    <div class="row" style="margin-top:10%;" id="go">
+        <img src="$base/mweb/images/logo.png" style="margin-bottom: 10px;" class="center-block"/>
+    </div>
+    <div class="row" style="margin-top:8%;">
+        <h5 class="text-right" style="padding-right: 5%">还没有账号？<a href="reg.vhtml">注册</a></h5>
+    </div>
+
+    <div class="row" style="margin-top:5%;">
+        <div class="col-xs-10 col-xs-offset-1">
+            <form>
+                <div class="row div-input">
+                    <div class="col-xs-1 icon-tele">
+                    </div>
+                    <div class="col-xs-10">
+                        <input id="phone" type="tel" class="div-input-text" placeholder="请输入手机号" maxlength="11"/>
+                    </div>
+                </div>
+                <div class="row div-input">
+                    <div class="col-xs-1 icon-pass">
+                    </div>
+                    <div class="col-xs-10">
+                        <input id="password" type="password" class="div-input-text" placeholder="请输入密码" maxlength="20"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px;">
+                    <input type="button" id="btnLogin" value="登录" class="btn btn-pink btn-block"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="row" style="margin-top:5%;">
+        <h5 class="text-center"><a href="forgetpassword.vhtml">重置密码？</a></h5>
+    </div>
+</div>
+<div class="nav-fix-bottom">
+<img src="$base/mweb/images/slogan.png" class="center-block"/>
+</div>
+<script>
+j("body").addClass("bg");
+
+var query = window.location.search.substr(1);
+if (query == 'prompt') {
+    msg('登录后就可以看到您的特权啦~');
+}
+if (j.cookie("type")) {
+    j("#go").append('<a href="index.vhtml" style="text-align: center;"><span style="background: #5099e8;color:white;margin-left: 42%;border-radius: 5px;padding: 3px 5px;" ><i class="iconfont" style="color: white">&#xe602;</i>进店看看</span></a>');
+}
+j("#btnLogin").on("click", function () {
+    if (!isValidMobile(j("#phone").val())) {
+        msg("请输入有效的手机号码!");
+        return;
+    }
+    if (!isValidPassword(j("#password").val())) {
+        msg("请输入密码,长度:8-20位!");
+        return;
+    }
+
+    var control = this;
+    var controlText = j(this).val();
+
+    function init() {
+        j(control).removeAttr("disabled");
+        j(control).val(controlText);
+    }
+
+    j(control).attr("disabled", "disabled");
+    j(control).val(controlText + "...");
+    rest("user.login", {
+                name: j("#phone").val(),
+                password: j.md5(j("#password").val())
+            },
+            function (data) {
+                if (data.RESULT_CODE == 0) {
+                    if (data.RESULT_DATA.code == 200) {
+                        var result = data.RESULT_DATA.result;
+                        j.cookie("token", result.token, {expires: 30, path: "/"});
+                        try {
+                            localStorage.setItem("token", result.token);
+                        } catch (e) {
+                        }
+                        msg("登录成功!");
+                        location.href = j.cookie("type") ? "power.vhtml" : "index.vhtml";
+                        j.cookie("type", "", {expires: 0, path: "/"});
+                    } else {
+                        msg(data.RESULT_DATA.message);
+                        init();
+                    }
+                } else {
+                    msg(data.RESULT_DATA.ERROR_TITLE);
+                    init();
+                }
+            }
+            , function () {
+                msg("系统请求错误!");
+                init();
+            });
+});
+</script>
+        #footer_mweb()

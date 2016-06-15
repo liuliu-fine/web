@@ -1,0 +1,44 @@
+/*全局样式*/
+*{
+	margin:0;
+	padding:0;
+	font-family:Arial;
+}
+/*body*/
+body {
+	/*
+	margin:0 auto;
+	width:1000px;
+	*/
+}
+/*img*/
+img {
+	border:0;
+}
+/*链接*/
+a{
+	color:#00559E;
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:underline;
+}
+/*清除浮动样式*/
+.clear {
+	clear:both;
+	overflow:hidden;
+	margin:0;
+	padding:0;
+	width:0;
+	height:0;
+}
+/*分隔行*/
+.separate{
+	clear:both;
+	overflow:hidden;
+	margin:0;
+	padding:0;
+	width:10px;
+	height: 10px;	
+	font-size:10px;
+}

@@ -1,0 +1,81 @@
+.wbox * {
+    margin: 0;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.wclear {
+    clear: both;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+}
+
+/*global*/
+.woverlayer {
+    position: fixed !important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.6;
+    filter: alpha(opacity = 60);
+    z-index: 10000;
+}
+
+.wbox {
+    position: fixed !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10001;
+}
+
+/*header*/
+.wbox div.wheader {
+    padding: 0 5px;
+    height: 26px;
+    border: 1px solid #99BBE8;
+    background:#f7f7f7;
+}
+
+.wbox div.wtitle {
+    float: left height: 26px;
+    line-height:
+    26px;
+    font-weight: bold;
+    color:
+    #15428B;
+}
+
+.wbox div.wclose {
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #cccccc;
+    background: url(images/close.gif) center no-repeat;
+    cursor: pointer;
+}
+
+/*body*/
+.wbox div.wbody {
+    overflow: auto;
+	position:relative;
+    border: 1px solid #99BBE8;
+    border-top: none;
+	background:#ffffff;
+}
+.wbox div.wloading {
+	position:absolute;
+	top:50%;
+	left:50%;
+    width:208px;
+	height:13px;
+	background: url(images/loading.gif) center no-repeat;
+}

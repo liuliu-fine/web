@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+  <title>$!title</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <!-- <meta http-equiv="Cache-Control" content="no-siteapp"/>-->
+
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="SHANGBIN"/>
+
+  <link rel="stylesheet" href="assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="assets/css/common.css">
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="assets/js/amazeui/amazeui.min.js"></script>
+  <script src="js/jquery.cookie.js"></script>
+  <script src="js/mweb.min.js"></script>
+
+  <!-- CONTEXT -->
+  <script type="text/javascript" language="javascript">
+    if (!navigator.cookieEnabled) {
+      location.href = "$base/mweb/miss_cookie.html";
+    }
+    var CONTEXT = "$base";
+    j.cookie("token", localStorage.token, {path: "/"});
+    var TOKEN = j.cookie("token") == "null" ? "" : j.cookie("token");
+    var SHOPID = j.cookie("shopId") == "null" ? "" : j.cookie("shopId");
+    var GUESTID = j.cookie("guestId") == "null" ? "" : j.cookie("guestId");
+
+  </script>
+  <style>
+    .rule {
+      border: 3px solid #ff6966;
+      padding: 10px 10px 15px;
+    }
+
+    .rule .text {
+      color: #a4a4a4;
+      font-size: 14px;
+      padding: 6px 0 4px;
+    }
+
+    .rule .box .right {
+      float: right;
+      color: #ff6966;
+    }
+
+    .rule .box {
+      border: 1px solid #eee;
+      background: #fff7e9;
+      padding: 8px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="am-g am-sticky">
+  <header data-am-widget="header"
+          class="am-header am-header-default bg-white am-animation-scale-down">
+    <div class="am-header-left am-header-nav">
+      <a href="javascript:history.go(-1)">
+        <i class="iconfont text-orange am-text-lg">&#xe60a;</i>
+      </a>
+    </div>
+    <div class="am-header-title">
+      <div class="text-black am-text-truncate">kaishi</div>
+    </div>
+
+  </header>
+  <hr/>
+</div>
+<div style="height: 50px"></div>
+<!--content begin-->
+<div class="payment">
+  <div class="am-fl left"><i class="iconfont am-text-lg">&#xe60a;</i></div>
+  <div class="right">
+    <div class="am-text-right am-inline am-text-lg"><span id="table_id"></span>号桌已付款，请等候收银员确认</div>
+    <p>上宾智付实际消费 <span>d</span> <span style="text-decoration: line-through">d</span></p>
+  </div>
+</div>
+<div class="rule">
+  <div class="row">
+    <div class="text">
+      使用的智付优惠
+    </div>
+    <div class="box">
+      140带
+      <span class="right">dfgdfgd</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="text">
+      使用的智付优惠
+    </div>
+    <div class="box">
+      140带
+      <span class="right">dfgdfgd</span>
+    </div>
+  </div>
+</div>
+<div class="am-g procedure am-padding-sm">
+  <div class="am-u-sm-offset-1 am-u-sm-10">
+    <div class="am-u-sm-5 ">
+      <div class="text">呼叫买单</div>
+      <div class="oval-icon-border">
+        <div class="oval-icon "></div>
+      </div>
+      <div class="line"></div>
+    </div>
+    <div class="am-u-sm-5">
+      <div class="text">配置最佳优惠</div>
+      <div class="oval-icon"></div>
+      <div class="line"></div>
+
+    </div>
+    <div class="am-u-sm-2">
+      <div class="text">完成买单</div>
+      <div class="oval-icon"></div>
+
+    </div>
+  </div>
+</div>
+<img src="assets/images/pay/run.gif" class="am-g am-u-sm-10 am-u-sm-offset-1">
+<!--<div style="height: 70px"></div>-->
+<!--<div class="am-g footer-button">-->
+  <!--<div class="am-g am-margin-vertical-sm ">-->
+    <!--<div class="am-u-sm-12 am-text-center">-->
+      <!--<a href="login.vhtml?prompt" id="power">-->
+        <!--<button class="am-u-sm-10 am-u-sm-offset-1 am-btn am-radius bg-orange text-white">-->
+          <!--扫描智付二维码-->
+        <!--</button>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+<!--content end-->
+</body>
+</html>

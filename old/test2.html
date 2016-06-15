@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+</head>
+<body>
+<!--<h3>上宾生活</h3>-->
+<!--<a href="http://weixin.qq.com/r/PXWGng7E8VOOrUr99yAv">上宾生活关注</a><br/>-->
+
+<!--<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4be28e9faf3ee422&redirect_uri=http%3a%2f%2fm.ishangbin.com%2f34be0e47c31d4d07863b27e1baab5fe9%2findex.vhtml&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect">-->
+<!--登陆授权-->
+<!--</a><br>-->
+
+<button id="code">点击获取二维码</button>
+<br/>
+<button id="checkJsApi">是否支持指定 JS 接口</button>
+<br/>
+<button id="onMenuShareAppMessage">分享到朋友圈</button>
+<br/>
+<button id="sao">扫码</button>
+<br/>
+<button id="pay">支付</button>
+<br/>
+<button id="attention">扫描且关注</button>
+<br/>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"></script>-->
+<script src="js/sha.js"></script>
+<script type="text/javascript">
+    var appid = "wxa0e70592c37ddc6b";
+    var secret = "dec77765265b5d74d4f523f260341b54";
+    //1.获取token
+    //"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appid + "&secret" + secret;
+    var access_token = "bk-jRMnWH7KaUkYltHoIyxgneZvy-rHwK0WIHs6tw16G-Y1GCpPFV_0zt-RSM28jGDTEQaVxKA7bsy-y1quD9aVBRjCvp19xWgXVOfdeVD9C6nyVUFE6_DM8iBUGnbKIXFNfAJAFNV";
+    //2.获得jsapi_ticket
+    //https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=bk-jRMnWH7KaUkYltHoIyxgneZvy-rHwK0WIHs6tw16G-Y1GCpPFV_0zt-RSM28jGDTEQaVxKA7bsy-y1quD9aVBRjCvp19xWgXVOfdeVD9C6nyVUFE6_DM8iBUGnbKIXFNfAJAFNV&type=jsapi
+    var ticket = "sM4AOVdWfPE4DxkXGEs8VLqrz3nXuTd5U-gQ9mAmggDnWcc6MYru2YN-vh01okI0bmFJeU-45XjZ2EDvHsvxrA";
+    var nonceStr = "ftaRdlUdkpOUaaga";
+    var timestamp = new Date().getTime();
+    var signature = "jsapi_ticket=" + ticket + "&noncestr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + location.href;
+    wx.config({
+        debug: true,
+        appId: appid,
+        timestamp: timestamp,
+        nonceStr: nonceStr,
+        signature: hex_sha1(signature),
+        jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'onMenuShareQZone',
+            'hideMenuItems',
+            'showMenuItems',
+            'hideAllNonBaseMenuItem',
+            'showAllNonBaseMenuItem',
+            'translateVoice',
+            'startRecord',
+            'stopRecord',
+            'onVoiceRecordEnd',
+            'playVoice',
+            'onVoicePlayEnd',
+            'pauseVoice',
+            'stopVoice',
+            'uploadVoice',
+            'downloadVoice',
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage',
+            'getNetworkType',
+            'openLocation',
+            'getLocation',
+            'hideOptionMenu',
+            'showOptionMenu',
+            'closeWindow',
+            'scanQRCode',
+            'chooseWXPay',
+            'openProductSpecificView',
+            'addCard',
+            'chooseCard',
+            'openCard'
+        ]
+    });
+
+    wx.ready(function () {
+        var url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" + access_token
+        document.querySelector("#code").onclick = function () {
+            $.ajax({
+                url: url,
+                type: "post",
+                dataType: "jsonp",
+                data: '{"expire_seconds": 604800, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": 123}}}'
+            });
+            <!--xmlhttp=new XMLHttpRequest();-->
+            <!--xmlhttp.open("POST",url,true);-->
+            <!--xmlhttp.send('{"expire_seconds": 604800, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": 123}}}');-->
+
+        }
+        // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
+        document.querySelector('#checkJsApi').onclick = function () {
+            wx.checkJsApi({
+                jsApiList: [
+                    'getNetworkType',
+                    'previewImage'
+                ],
+                success: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        };
+
+        // 2. 分享接口
+        // 2.1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
+        document.querySelector('#onMenuShareAppMessage').onclick = function () {
+            wx.onMenuShareAppMessage({
+                title: '互联网之子',
+                desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
+                link: 'http://movie.douban.com/subject/25785114/',
+                imgUrl: 'http://demo.open.weixin.qq.com/jssdk/images/p2166127561.jpg',
+                trigger: function (res) {
+                    // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                    alert('用户点击发送给朋友');
+                },
+                success: function (res) {
+                    alert('已分享');
+                },
+                cancel: function (res) {
+                    alert('已取消');
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+            alert('已注册获取“发送给朋友”状态事件');
+        };
+        //扫码
+        document.querySelector('#sao').onclick = function () {
+            wx.scanQRCode({
+                needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                success: function (res) {
+                    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                }
+            });
+        }
+        //支付
+
+        document.querySelector('#pay').onclick = function () {
+            // 注意：此 Demo 使用 2.7 版本支付接口实现，建议使用此接口时参考微信支付相关最新文档。
+            wx.chooseWXPay({
+                timestamp: 1414723227,
+                nonceStr: 'noncestr',
+                package: 'addition=action_id%3dgaby1234%26limit_pay%3d&bank_type=WX&body=innertest&fee_type=1&input_charset=GBK&notify_url=http%3A%2F%2F120.204.206.246%2Fcgi-bin%2Fmmsupport-bin%2Fnotifypay&out_trade_no=1414723227818375338&partner=1900000109&spbill_create_ip=127.0.0.1&total_fee=1&sign=432B647FE95C7BF73BCD177CEECBEF8D',
+                signType: 'SHA1', // 注意：新版支付接口使用 MD5 加密
+                paySign: 'bd5b1933cda6e9548862944836a9b52e8c9a2b69'
+            });
+        };
+        //关注
+        document.querySelector('#attention').onclick = function () {
+        }
+
+
+    });
+
+
+</script>
+</body>
+</html>

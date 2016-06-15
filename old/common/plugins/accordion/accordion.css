@@ -1,0 +1,18 @@
+.accordion {
+	border:1px #CADEF9 solid;
+}
+.accordion span{
+	display:block;
+	text-align:center;
+	border-top:1px solid #ffffff;
+	border-bottom:1px solid #CADEF9; 
+	background:#ECF3F9;
+}
+.accordion span.selected{
+	font-weight:bold;
+}
+.accordion div{
+	overflow-y:auto;
+	padding:0 10px;
+	background:#FAFCFD;
+}

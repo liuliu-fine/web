@@ -1,0 +1,105 @@
+#head_mweb('上宾-买单请求')
+        #titlebar('请稍等...')
+        <!--content begin-->
+<div class="payment">
+    <div class="am-fl left"><img src="$base/mweb/assets/images/pay/cafe.png"/></div>
+    <div class="right">
+        <div class="am-text-right am-inline am-text-lg"><span id="table_id"></span>号桌<span
+                class="am-text-xs am-fr am-padding-top-xs" id="table_time"></span></div>
+        <p class="pre">支付买单请求已发出，请等候服务人员确认消费金额，你也可以呼叫服务人员加快速度哦~</p>
+        <p class="hide after">本次消费金额如下，请等候服务员为你服务~</p>
+        <div class="am-text-xxxl am-text-center hide after am-margin-right-lg"></div>
+    </div>
+</div>
+<div class="am-g procedure am-padding-sm">
+<div class="am-u-sm-offset-1 am-u-sm-10">
+    <div class="am-u-sm-5 ">
+        <div class="text">呼叫买单</div>
+        <div class="oval-icon-border">
+            <div class="oval-icon "></div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="am-u-sm-5">
+        <div class="text">配置最佳优惠</div>
+        <div class="oval-icon"></div>
+        <div class="line"></div>
+    </div>
+    <div class="am-u-sm-2">
+        <div class="text">完成买单</div>
+        <div class="oval-icon"></div>
+    </div>
+</div>
+</div>
+<img src="$base/mweb/assets/images/pay/run.gif" class="am-g"/>
+<div style="height: 70px"></div>
+<div class="am-g footer-button after hide">
+<div class="am-g am-margin-vertical-sm">
+    <div class="am-u-sm-12 am-text-center">
+            <button class="am-u-sm-10 am-u-sm-offset-1 am-btn am-radius bg-orange text-white scan">
+                扫描智付二维码
+            </button>
+    </div>
+</div>
+</div>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+j(function () {
+    if (window.location.search.substr(1) == "in") {
+        j(".am-header-left.am-header-nav").html("<a class='am-text-xl' onclick='cancel()'>×</a>");
+    }
+    if (!j.cookie("check_id")) {
+        cancel();
+    }
+    j("#table_id").html(j.cookie("table_id") || "");
+    j("#table_time").html(j.cookie("table_time") || "");
+    j("header").append("<div class='am-header-right am-header-nav'><a onclick='cancel()'>取消买单</a></div>");
+    var init = setInterval(function () {
+        rest("check.state.get", {checkedId: j.cookie("check_id")}, function (data) {
+            var result = data.RESULT_DATA.result;
+            if (result.state == 2) {
+                j(".after").show();
+                j(".pre").hide();
+                j(".am-text-xxxl").html("￥" + result.amount);
+                init = window.clearInterval(init);
+            }
+            if(data.RESULT_DATA.code == 404000){
+                cancel();
+            }
+        })
+
+    }, 10000);
+    j(".scan").click(function () {
+        rest("auth.jsconfig.post",{shopId:SHOPID,url:location.href},function (data) {
+            if(data.RESULT_DATA.code == 200) {
+                var result = data.RESULT_DATA.result;
+                result.nonceStr = result.noncestr;
+                delete result.noncestr;
+                result.jsApiList = [
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard',
+                    'openLocation',
+                    'chooseImage'
+                ];
+                wx.config(result);
+                wx.scanQRCode({
+                    needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                    scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                    success: function (res) {
+                        var result1 = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                        location.href = result1;
+//                        alert(JSON.stringify(res));
+                    }
+                });
+            }
+        })
+    })
+});
+
+</script>
+        <!--content end-->
+        #foot_mweb()

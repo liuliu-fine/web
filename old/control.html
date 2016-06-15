@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+</head>
+<body>
+
+<script>
+var query = window.location.search.substr(1);
+ var para = query.split("&");
+if(para[0].substr(2)=="c"){
+location.href="_coupon.vhtml?"+ para[1];
+}else{
+location.href="_object.vhtml"+ para[1];
+}
+
+</script>
+#foot_mweb()
+
+
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>jwzw.wbox</title>
+        <script src="../../../js/jquery-1.8.3.js" type="text/javascript">
+        </script>
+        <link href="jwzw.wbox.css" rel="stylesheet" type="text/css" />
+        <script src="jwzw.wbox.js" type="text/javascript">
+        </script>
+        <script type="text/javascript" language="javascript">
+		//弹出窗口
+		function pop(url, winWidth, winHeight) {
+		   try
+		   {
+			   var popDiv = document.createElement("div"); //tempDiv	   
+			   j("body").append(popDiv);
+			   j(popDiv).hide();
+			   j(popDiv).wbox({url:url,width:winWidth,height:winHeight});  
+			   
+		   }catch(ex){
+			   var x = (screen.availWidth - winWidth) / 2;
+			   var y = (screen.availHeight - winHeight) / 2;
+			   var win = window.open(url, "_blank", "height=" + winHeight + ", width=" + winWidth + ",left=" + x + ",top=" + y + ", toolbar=no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+			   win.focus();
+		   }
+		}
+
+		//关闭弹窗
+		function wclose(){
+			if (opener != null){
+				window.close();
+			}else{
+				j("div.wclose",parent.document).trigger("click");
+			}
+		}
+
+        	function popTest(){
+				pop("http://www.baidu.com",800,600);
+			}
+        </script>
+    </head>
+    <body>
+    	<input type="button" value="弹出层" onclick="javascript:popTest();"/>
+    </body>
+</html>
