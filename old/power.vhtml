@@ -1,0 +1,172 @@
+#head_mweb("上宾-我的权益")
+        #titlebar("我的权益")
+<section class="text-white bg-grey-white" id="top">
+    <div style="height: 70px" class="am-padding-sm bg-white">
+        <div class="border-radius"
+             style="background:url('$base/mweb/assets/images/card-bg.png') no-repeat;background-size: 100% 100%;height: 90px">
+            <div class="am-padding-sm">
+                <div id="member-info" class="hide">
+                    <div class="am-text-truncate am-fl" style="width: 70%">
+                        <strong id="member-grade-name"></strong>
+                    </div>
+                    <div class="am-fr am-text-xs" style="padding-top: 3px">
+                        <a class="text-white" href="vip.vhtml">
+                            <span class="border-radius border" style="padding: 3px 6px;">会员规则</span>
+                        </a>
+                    </div>
+                    <div class="am-cf"></div>
+                    <div class="am-text-center am-margin-top-sm am-text-lg"
+                         style="background-color: #ff534f;border-radius: 8px;">
+                        <div class="text-white" style="text-shadow: 2px 3px 2px #d8605e" id="member-card-no"></div>
+                    </div>
+                </div>
+                <div id="member-uninfo" class="hide">
+                    <div style="margin-left: 40%;margin-top: 6%">
+                        <a href="vip.vhtml">
+                            <span class="border-radius border am-text-xs text-white"
+                                  style="padding: 3px 6px;">加入会员</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 40px">
+    </div>
+</section>
+<hr/>
+<div class="text-grey" id="middle">
+<a href="#" id="remainder">
+    <div class="am-padding-sm">
+        <i class="iconfont text-grey">&#xe60c;</i>
+        <span class="padding-xxs text-black">充值余额</span>
+            <span class="am-fr"><span id="member-charge">￥0</span><i
+                    class="iconfont am-vertical-align-middle padding-xxs text-grey">
+                &#xe605;</i></span>
+    </div>
+</a>
+<hr/>
+<a href="#" id="point">
+    <div class="am-padding-sm">
+        <i class="iconfont text-grey">&#xe60b;</i>
+        <span class="padding-xxs text-black">积分</span>
+            <span class="am-fr"><span id="member-point">0</span><i
+                    class="iconfont am-vertical-align-middle padding-xxs text-grey">
+                &#xe605;</i>
+        </span>
+    </div>
+</a>
+<hr/>
+</div>
+<div class="bg-grey-white border" style="height:10px"></div>
+<div id="img" class="hide am-padding">
+<img src="$base/mweb/assets/images/kong.png" style="width:40%;display:block;position:relative;margin:auto;">
+</div>
+<section id="section-coupon" class="hide">
+<div class="am-padding-sm text-grey am-text-sm"><span class="coupon">可用的券</span>(<span id="member-coupon-count">0</span>)
+</div>
+<hr/>
+<div class="am-padding-sm" id="coupon-list">
+    <section id="tmp-coupon-charge" class="hide">
+        <a href="@id@">
+            <div class="border am-margin-bottom-xs border-radius">
+                <div class=" am-g am-g-collapse am-nbfc">
+                    <div class="am-u-sm-9">
+                        <div class="am-padding-sm">
+                            @@name@@
+                            <div class="text-grey am-text-xs">@@startTime@@-@@endTime@@</div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-3 equal-height text-white am-text-center ">
+                        <div style="background-color: #ff534f;"
+                             class="equal-height am-padding-vertical-sm">
+                            <img src="$base/mweb/assets/images/dollar.png" alt="dollar"/>
+
+                            <div class="am-text-xs am-margin-top-xs">代金券</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <section id="tmp-coupon-consume" class="hide">
+        <a href="@id@">
+            <div class="border am-margin-bottom-xs border-radius">
+                <div class=" am-g am-g-collapse am-nbfc">
+                    <div class="am-u-sm-9">
+                        <div class="am-padding-sm">
+                            @@name@@
+                            <div class="text-grey am-text-xs">@@startTime@@-@@endTime@@</div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-3 equal-height text-white am-text-left">
+                        <div style="background: #df3121;border-radius: 0 5px;"
+                             class="equal-height">
+                            <img src="$base/mweb/assets/images/gold.png" alt="dollar" style="width: 100%">
+
+                            <div class="am-padding-sm am-padding-top-0 am-text-center" style="color: #fce243;font-style: italic">
+                                <div class="am-text-xs" style="text-decoration: line-through">
+                                    ￥@@amount@@
+                                </div>
+                                <div style="line-height: 16px"><span
+                                        class="am-text-lg am-text-center">@@currentAmount@@</span>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </section>
+    <!--抵用券-->
+</div>
+</div>
+<div style="height: 100px"></div>
+<div class="am-g bg-white" id="out" style="position: fixed;bottom: 0;">
+<hr/>
+<div class="am-g am-margin-vertical-sm ">
+    <div class="am-u-sm-12 am-text-center">
+        <input type="text" id="table" class="border am-margin-bottom-sm am-padding-xs" placeholder="请先在此输入桌台号" required/>
+        <button class="am-u-sm-10 am-u-sm-offset-1 am-btn am-radius bg-orange text-white" id="payment">
+            一键智付
+        </button>
+    </div>
+</div>
+</div>
+<a href="payRequest.vhtml?in">
+<div class="am-g footer-button hide" id="in" style="background: #BFDCEA">
+    <div class="am-g am-margin-sm am-padding-horizontal-xl">
+        <img class="am-fl icon" src="$base/mweb/assets/images/pay/hat.png"/>
+        <span class="text-black am-padding-left-sm am-text-sm">你有一个买单正在进行中...</span>
+        <span class="am-fr"><i class="iconfont am-text-primary">&#xe605;</i></span>
+    </div>
+</div>
+</a>
+        </section>
+        <!--弹窗提示-->
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-popup">
+<div class="am-modal-dialog">
+    <div class="am-g am-padding-sm"
+         style="background: url('$base/mweb/assets/images/modal-bg.png') no-repeat;background-size: 100%">
+        <img src="$base/mweb/assets/images/modal-text.png" style="width: 100%">
+
+        <div class="am-padding-top-xs">
+            <img src="$base/mweb/assets/images/modal-title.png" style="width: 100%">
+        </div>
+        <div class="am-padding-top">
+            <div class="am-modal-footer">
+                <span class="am-modal-btn"><img src="$base/mweb/assets/images/modal-cancel.png" style="width: 15%">
+       </span></div>
+        </div>
+    </div>
+
+</div>
+</div>
+<script type="application/javascript" src="$base/mweb/assets/js/dest/power.js"></script>
+
+
+        #foot_mweb()

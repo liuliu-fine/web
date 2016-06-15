@@ -1,0 +1,126 @@
+#header_mweb("上宾-生日信息")
+<div class="container">
+    <div class="row" style="margin-top:5%;">
+        <div class="col-xs-10 col-xs-offset-1">
+            <h5 style="color:black;font-weight: bold;">请先补全你的生日，再领取生日优惠券哦~</h5>
+            <h6>注意：生日填写后将不可修改，请如实填写</h6><br/>
+
+            <div class="row div-text">
+                <div class="col-xs-1 icon-user">
+                </div>
+                <div class="col-xs-10">
+                    <b><span id="user"></span></b>
+                </div>
+            </div>
+            <div class="row div-text">
+                <div class="col-xs-1 icon-tele">
+                </div>
+                <div class="col-xs-10">
+                    <b><span id="phone"></span></b>
+                </div>
+            </div>
+            <div class="row div-text">
+                <div class="col-xs-1 icon-birth">
+                </div>
+                <div class="col-xs-10">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            请输入你的出生年份:
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="row div-input-mini">
+                                <div class="col-xs-12" style="padding:0;">
+                                    <input id="birthday-year" class="div-input-text text-center"
+                                           placeholder="1990"
+                                           maxlength="4"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            请输入你的出生月份:
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="row div-input-mini">
+                                <div class="col-xs-12" style="padding:0;">
+                                    <input id="birthday-month" class="div-input-text text-center"
+                                           placeholder="01"
+                                           maxlength="2"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            请输入你的出生日期:
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="row div-input-mini">
+                                <div class="col-xs-12" style="padding:0;">
+                                    <input id="birthday-day" class="div-input-text text-center"
+                                           placeholder="01"
+                                           maxlength="2"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:80px;">
+                <input type="button" id="btnSave" value="保存" class="btn btn-pink btn-block">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    titlebar("补全生日", true);
+    j(function () {
+        if (j.cookie("user") == null) {
+            location.href = "index.vhtml";
+        }
+        var user = j.parseJSON(j.cookie("user"));
+        j("#user").html(user.nickname);
+        j("#phone").html(user.phone);
+    });
+    j("#btnSave").on("click", function () {
+        var birthday = j("#birthday-year").val() + "-"+j("#birthday-month").val() + "-"+j("#birthday-day").val();
+        if (!isValidDate(birthday)) {
+            msg("请输入有效的生日!");
+            return;
+        }
+        var control = this;
+        var controlText = j(this).val();
+        function init() {
+            j(control).removeAttr("disabled");
+            j(control).val(controlText);
+        }
+        var r=confirm("注意！请填写您的真实生日，生日一旦设置将不可更改！您设置的生日将可能影响您阿紫商家正常行使权益。");
+        if (r==true) {
+            j(control).attr("disabled", "disabled");
+            j(control).val(controlText + "...");
+            rest("user.update.birthday", {
+                        birthday: birthday
+                    },
+                    function (data) {
+                        if (data.RESULT_CODE == 0) {
+                            if (data.RESULT_DATA.code == 200) {
+                                msg("操作成功!");
+                                location.href = "index.vhtml";
+                            } else {
+                                msg(data.RESULT_DATA.message);
+                                init();
+                            }
+                        } else {
+                            msg(data.RESULT_DATA.ERROR_TITLE);
+                            init();
+                        }
+                    }
+                    , function () {
+                        msg("系统请求错误!");
+                        init();
+                    });
+        }
+    });
+</script>
+#footer_mweb()

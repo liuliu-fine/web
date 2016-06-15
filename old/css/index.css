@@ -1,0 +1,98 @@
+.shop-photo {
+    height: 200px;
+    background-color: lightgray;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.shop-brand {
+    margin: 80px 2px 2px 2px;
+    height: 100px;
+    border-radius: 8px;
+    background: #181412;
+    opacity: 0.85;
+}
+
+.shop-name {
+    padding: 5px 0 5px 0;
+    padding-left:15px;
+    color: white;
+    font-size: 18px;
+    line-height: 36px;
+}
+
+.shop-para {
+    padding:0;
+    margin-left:5px;
+    border-radius: 5px;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid white;
+}
+
+.box-bar{
+    line-height:48px;
+    text-align: center;
+    border-top: 1px solid #eaeaea;
+    background: #f0f0f0;
+}
+.box-item{
+    padding-left:35px;
+    height:48px;
+    line-height:48px;
+    text-align: left;
+    border-bottom: 1px solid #f7f7f7;
+    background-color: white;
+}
+.activity-item{
+    padding:5px 0px;
+    padding-left: 35px;
+    text-align: left;
+    border-bottom: 1px solid #f7f7f7;
+    background-color: white;
+}
+.icon-local {
+    background-image: url(../images/local.png);
+    background-repeat: no-repeat;
+    background-position: 5px center;
+}
+.icon-phone {
+    background-image: url(../images/phone.png);
+    background-repeat: no-repeat;
+    background-position: 5px center;
+}
+.icon-shop {
+    background-image: url(../images/shop.png);
+    background-repeat: no-repeat;
+    background-position: 5px center;
+}
+
+.icon-discount {
+    background-image: url(../images/discount.png);
+    background-repeat: no-repeat;
+    background-position: 5px center;
+}
+.icon-coupon {
+    background-image: url(../images/coupon.png);
+    background-repeat: no-repeat;
+    background-position: 5px center;
+}
+
+.shop-pay{
+    position: fixed;
+    bottom: 0;
+    padding-right:15px;
+    height: 100px;
+    border-top: 5px solid #f7f7f7;
+    background: white;
+}
+.icon-pay {
+    padding-left:40px;
+    height: 48px;
+    font-size: 12px;
+    line-height: 48px;
+    background-image: url(../images/pay.png);
+    background-repeat: no-repeat;
+    background-position: 20px center;
+}

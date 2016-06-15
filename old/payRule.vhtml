@@ -1,0 +1,190 @@
+#head_mweb('上宾-买单请求')
+        #titlebar('请稍等...')
+        <!--content begin-->
+<div class="loader-bg">
+    <div class="loader"></div>
+    正在加载 ...
+</div>
+<section id="total" class="hide">
+
+<div class="am-padding-xs am-text-center">请选择智付方案</div>
+<div>
+    <div class="plan">
+        <div class="am-padding-sm am-text-center"><img src="$base/mweb/assets/images/pay/calc.png"><span
+                id="page"></span>
+        </div>
+        <div class="plan-box">
+            <div class="left am-fl text-orange">
+                <div class="">实际支付</div>
+                <div class="am-text-xl" id="finalAmount"></div>
+            </div>
+            <div class="right">
+                <div class="choose" id="used">
+                    <div class="text-grey">金额抵用</div>
+                    <div class="content">
+                        <div class="am-text-sm">
+                            <span>left</span>
+                            <span class="am-fr text-orange">right</span>
+                        </div>
+                    </div>
+                    <hr class="am-margin-vertical-sm">
+                </div>
+                <div class="choose" id="get">
+                    <div class="text-grey">付款后还可获得</div>
+                    <div class="content">
+                        <div class="am-text-sm">
+                            <span>left</span>
+                            <span class="am-fr text-orange">right</span>
+                        </div>
+                    </div>
+                    <hr class="am-margin-vertical-sm">
+                </div>
+
+            </div>
+            <div class="unpart">
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 70px"></div>
+<div class="am-g footer-button">
+    <div class="am-g am-margin-vertical-sm ">
+        <div class="am-u-sm-12 am-text-center">
+            <button class="am-u-sm-10 am-u-sm-offset-1 am-btn am-radius bg-orange text-white" id="submit">
+                确定
+            </button>
+        </div>
+    </div>
+</div>
+<div id="modal-alert"></div>
+</section>
+<script>
+var id = window.location.search.substr(3);
+
+//var json = {};
+//
+//var json = {
+//    "code": 200,
+//    "message": "operate successfully",
+//    "result": {
+//        "userId": "ea5d50027fab45b49fca6859a5f1a509",
+//        "amount": 856,
+//        "strategies": [{
+//            "id": "574eb3bee4549da835ac2eee",
+//            "needValidate": true,
+//            "finalAmount": 788,
+//            "used": [{"content": "使用充值卡支付", "amount": 68}, {"content": "使用充值卡支付", "amount": 68}],
+//            "points": {"amount": 1712, "point": 94.16}
+//        }, {
+//            "id": "574eb3bee4549da835ac2ef1",
+//            "needValidate": false,
+//            "finalAmount": 856,
+//            "used": [{"content": "使用充值卡支付", "amount": 68}],
+//            "points": {"amount": 856, "point": 8.56},
+//            "nonPart": {"name": "酒水，饮料", "amount": 80},
+//            "coupons": [{
+//                "coupon": {"name": "50元代金券", "time": "领取当月有效", "amount": 50, "currentAmount": 0},
+//                "count": 3
+//            }, {"coupon": {"name": "水煮鱼抵用卷", "time": "领取当月有效", "amount": 88, "currentAmount": 30}, "count": 1}]
+//        }, {
+//            "id": "574eb3bee4549da835ac2ef0",
+//            "needValidate": false,
+//            "finalAmount": 856,
+//            "points": {"amount": 856, "point": 85.6}
+//        }]
+//    }
+//}
+j(function () {
+    j("#modal-alert").load("/mweb/modal.html#payment");
+    rest("check.calc.post", {key: id}, function (data) {
+        if (data.RESULT_DATA.code == 200) {
+            var json = data.RESULT_DATA;
+            j("header .am-text-truncate").html("账单金额￥" + json.result.amount);
+            var pre_html = j(".plan");
+            var strategies = json.result.strategies;
+            for (var i = 0; i < strategies.length; i++) {
+                var cloned_node = pre_html.clone(true);
+                cloned_node.find("#page").html(i + 1 + "/" + strategies.length);
+                cloned_node.find("#finalAmount").html(strategies[i].finalAmount);
+                cloned_node.attr("id", strategies[i].id);
+                if (strategies[i].used) {
+                    var uses = "";
+                    var used = j("#used .content").html();
+                    for (var k = 0; k < strategies[i].used.length; k++) {
+                        var use = used;
+                        use = use.replace("left", strategies[i].used[k].content);
+                        use = use.replace("right", "- ￥" + strategies[i].used[k].amount);
+                        uses += use;
+                        cloned_node.find("#used .content").append(uses);
+                    }
+                } else {
+                    cloned_node.find("#used").html("");
+                }
+                if (strategies[i].points) {
+                    var use = j("#get .content").html();
+                    use = use.replace("left", "积分");
+                    use = use.replace("right", "+ " + strategies[i].points.point);
+                    cloned_node.find("#get .content").append(use);
+                }
+                if (strategies[i].coupons) {
+                    var uses = "";
+                    var used = j("#get .content").html();
+                    for (var k = 0; k < strategies[i].coupons.length; k++) {
+                        var use = used;
+                        use = use.replace("left", strategies[i].coupons[k].coupon.name);
+                        use = use.replace("right", strategies[i].coupons[k].count + "张");
+                        uses += use;
+                        cloned_node.find("#get .content").append(uses);
+                    }
+                }
+                if (!strategies[i].coupons && !strategies[i].points) {
+                    cloned_node.find("#get").hide();
+                }
+                if (strategies[i].nonPart) {
+                    cloned_node.find(".unpart").html(strategies[i].nonPart.name + strategies[i].nonPart.amount);
+                } else {
+                    cloned_node.find(".unpart").hide()
+                }
+
+                j(".plan").parent().append(cloned_node);
+
+            }
+            j(".plan:first").hide();
+            j(".am-text-sm:first-child").hide();
+            j(".loader-bg").hide();
+            j("#total").show();
+        } else if (data.RESULT_DATA.code == 403006) {
+            msg(data.RESULT_DATA.message);
+            cancel();
+        }
+    });
+    j(".plan-box").click(function () {
+        j(".plan-box-focus").removeClass("plan-box-focus");
+        j(this).addClass("plan-box-focus");
+    });
+
+    j("#submit").click(function () {
+        if (!!j(".plan-box-focus").length) {
+            j("#payment").modal({
+                relatedTarget: this,
+                onConfirm: function () {
+                    var check = j(".plan-box-focus").parent().attr("id");
+                    rest("check.strategy.post", {key: id, strategyId: check}, function (data) {
+                        if (data.RESULT_DATA.code == 200) {
+                            window.location = "payCheck.vhtml";
+                        } else {
+                            location.href = "index.vhtml";
+                        }
+                    });
+                }
+            });
+        } else {
+            alert("请选择策略！");
+        }
+
+    })
+})
+
+</script>
+        </body>
+        </html>

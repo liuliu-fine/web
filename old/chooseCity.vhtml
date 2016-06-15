@@ -1,0 +1,143 @@
+#head_mweb('上宾-城市选择')
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.3&key=0afc3e67ea501df6fbedfcdbaa727df9&plugin=AMap.Geocoder"></script>
+        </head>
+<body>
+<div class="am-g am-sticky bg-white">
+    <header data-am-widget="header"
+            class="am-header am-header-default bg-white am-animation-scale-down">
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:history.go(-1)">
+                <i class="iconfont text-orange am-text-lg">&#xe60a;</i>
+            </a>
+        </div>
+        <div class="am-header-title">
+            <div class="text-black">城市选择</div>
+        </div>
+        <div class="am-header-right am-header-nav">
+            <div class="text-orange" id="reset">重新定位</div>
+        </div>
+
+    </header>
+    <hr/>
+</div>
+<div style="height: 50px"></div>
+<section id="total" class="hide">
+    <div class="am-padding-sm">
+        <div class="am-text-sm"><strong>定位城市</strong></div>
+        <a href="#" id="city-code">
+            <button class="am-btn am-btn-xs button" id="city-name">定位失败</button>
+        </a>
+
+        <div id="prompt" class="hide am-text-xs am-padding-top-xs">当前城市尚未开通，请在可用城市中选择。</div>
+        <hr class="am-margin-bottom-lg am-margin-top"/>
+        <div class="am-text-sm">
+            可用城市
+        </div>
+        <ul class="am-avg-sm-4 am-text-xs am-text-center am-padding-vertical-sm" id="city">
+            <li>
+                <a href="shops.vhtml?" id="href">
+                    <img src="$base/mweb/assets/images/0519.png" width="70%"/>
+
+                    <div class="am-padding-xs">@name@</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+<script>
+    j(function () {
+        //控制单元
+        var cities = {};
+        getLocation();
+        j("#reset").click(function () {
+            j("#city-name").html("定位中...");
+            getLocation();
+        });
+        //请求服务器得到城市列表
+        rest("dict.city.get", {}, function (data) {
+            if (data.RESULT_CODE == 0) {
+                if (data.RESULT_DATA.code == 200) {
+                    var result = data.RESULT_DATA.result;
+                    cities = result;
+                    var citys = "";
+                    for (var i in result) {
+                        var city = j("#city").html();
+                        city = city.replace(j("#href").attr('href'), "shops.vhtml?" + result[i].code + "&" + encodeURIComponent(result[i].name));
+                        city = city.replace("0519", result[i].code);
+                        city = city.replace("@name@", result[i].name);
+                        citys += city;
+                    }
+                    j("#city").html(citys);
+                    j("#total").show();
+                }
+            }
+        }, function () {
+        });
+        //获取地理位置
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, function () {
+                    j("#prompt").html("授权失败啦~没办法自动推荐所在城市了哦~您可以从下列城市中手动选择~");
+                    j("#prompt").show();
+
+                }, { // 附带参数
+                    enableHighAccuracy: true// 提高精度(耗费资源)
+                });
+            }
+            else {
+                msg("不支持定位");
+            }
+        }
+
+        //取到高德地理信息
+        function showPosition(position) {
+            var init = [position.coords.longitude, position.coords.latitude];
+            regeocoder(init);
+
+        }
+
+        //逆地理编码
+        function regeocoder(lnglatXY) {
+            var geocoder = new AMap.Geocoder({
+                radius: 1000,
+                extensions: "all"
+            });
+            geocoder.getAddress(lnglatXY, function (status, result) {
+                if (status === 'complete' && result.info === 'OK') {
+                    var address = result.regeocode.formattedAddress; //返回地址描述
+                    var json = {};
+                    json.city = result.regeocode.addressComponent.city || result.regeocode.addressComponent.province;
+                    json.citycode = result.regeocode.addressComponent.citycode;
+                    exist(json.citycode);
+                }
+                else {
+                    msg("请重试！");
+                }
+            });
+        }
+
+        //判断城市是否可用
+        function exist(name) {
+            var c = 0;
+            for (var i in cities) {
+                if (cities[i].name == name || cities[i].code == name) {
+                    c++;
+                    name = cities[i].name;
+                    j("#city-code").attr("href", "shops.vhtml");
+                }
+            }
+            if (!c) {
+                j("#city-name").addClass("am-disabled");
+                j("#prompt").html("当前城市尚未开通，请在可用城市中选择。");
+                j("#prompt").show();
+            }
+            else {
+                j("#city-name").removeClass("am-disabled");
+                j("#prompt").hide();
+            }
+            j("#city-name").html(name);
+        }
+    })
+</script>
+#foot_mweb()

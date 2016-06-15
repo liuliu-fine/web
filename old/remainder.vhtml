@@ -1,0 +1,103 @@
+#head_mweb('上宾-充值记录')
+        #titlebar('充值记录')
+<div class="hide" id="total">
+    <div class="bg-white am-g am-sticky" id="header">
+        <div class="am-padding-sm">
+            <strong class="am-text-sm">当前余额</strong><br/>
+            <strong class="am-text-xl text-orange" id="amount"></strong>
+            <a id="charge">
+                <button class="am-btn border-radius text-white  am-u-sm-12 am-u-sm-centered bg-orange">
+                    马上充值
+                </button>
+            </a>
+        </div>
+        <div class="liner"></div>
+    </div>
+    <div class="bg-white" style="height: 130px"></div>
+    <section id="record">
+        <div id="title">
+            <div class="bg-grey-white am-padding-sm am-text-sm text-grey">
+                <strong class="am-text-default text-black am-margin-right-sm">@date@</strong>
+            </div>
+        </div>
+        @record@
+    </section>
+    <div id="context">
+        <div class="am-padding-sm">
+            <div class="am-fl" id="content" style="width: 80%">@name@<br/>
+
+                <div class="am-text-xs text-grey">@time@</div>
+            </div>
+            <div class="am-fl am-text-right am-text-xs" style="width: 20%" id="amount-tag">
+                @color@
+            </div>
+        </div>
+        <div class="am-cf"></div>
+        <hr class="am-margin-left-sm am-margin-top-sm">
+    </div>
+    <div id="box" class="second-title" style="height: 60px"></div>
+</div>
+<div class="bg-white am-g" style="position: fixed;bottom: 0;">
+<hr/>
+<a href="http://sharejoy.cn/download/">
+    <div class="am-text-center am-padding-sm am-text-xs text-orange">
+        <span class="download bg" style="padding-top: 4px"></span>
+        现在下载上宾APP，尊享"智付"体验，特权由你 !
+    </div>
+</a>
+</div>
+<div id="modal-alert"></div>
+<script>
+j(function () {
+    var relationId = j.cookie().relationId;
+    var query = window.location.search.substr(1);
+    j("#amount").html(query);
+//识别码
+    j("#modal-alert").load("/mweb/modal.html#alert");
+    j("#charge").click(function (){
+        identify();
+    })
+//充值记录
+    rest("benefit.charge.list", {relationId: relationId}, function (data) {
+        if (data.RESULT_CODE == 0) {
+            if (data.RESULT_DATA.code == 200) {
+                var result = data.RESULT_DATA.result;
+                j('#amount').html();
+                var records = "";
+                for (var i in result.items) {
+                    var record = j('#record').html();
+                    record = record.replace("@date@", result.items[i].date);
+                    var contexts = "";
+                    for (var o in result.items[i].records) {
+                        var context = j('#context').html();
+                        if (result.items[i].records[o].type == "601") {
+                            context = context.replace("@color@", '<span class="text-orange">+@money@</span>');
+                        } else {
+                            context = context.replace("@color@", '<span class="text-blue">-@money@</span>');
+                        }
+                        context = context.replace("@name@", result.items[i].records[o].content);
+                        context = context.replace("@time@", result.items[i].records[o].time);
+                        context = context.replace("@money@", result.items[i].records[o].amount);
+                        contexts += context;
+                    }
+                    record = record.replace("@record@", contexts);
+                    records += record;
+                }
+                j('#record').html(records);
+                j('#context').hide();
+                if (document.body.clientHeight - 60 < window.innerHeight) {
+                    j('#box').hide();
+                }
+                j('#total').show();
+            }
+            else {
+                j('#context').hide();
+                j('#box').hide();
+                j('#record').html('<img src="$base/mweb/assets/images/kong.png" style="width:40%;display:block;position:relative;margin: 20% auto;">');
+                j('#total').show();
+            }
+        }
+    });
+});
+</script>
+        #foot_mweb()

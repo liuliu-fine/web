@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+	<title>Tab选项卡 Demo</title>
+	<link href="../../../common/css/global.css" rel="stylesheet" type="text/css" />
+	<link href="../../../common/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="tabs.css" rel="stylesheet" type="text/css" />
+	<script src="../../../common/js/jquery-1.4.2.js" type="text/javascript"></script>
+	<script src="tabs.js" type="text/javascript"></script>
+	<script type="text/javascript" language="javascript">
+	</script>
+</head>
+<body>
+	<div>Tab选项卡：简单</div>
+	<script type="text/javascript" language="javascript">
+		j(document).ready(function() {
+			j("#simple div.tabs").tabs("#simple div.panes > div");
+		});
+	</script>
+	<div id="simple">
+		<div class="tabs">
+			<span><a href="#">Tab 1</a></span>
+			<span><a href="#">Tab 2</a></span>
+			<span><a href="#">Tab 3</a></span>
+		</div>		
+		<div class="panes" >
+			<div>tab1中的内容</div>
+			<div>tab2中的内容</div>
+			<div>tab3中的内容</div>
+		</div>
+	</div>
+	<div class="separate"></div>
+	<div>Tab选项卡：简单,鼠标移动切换</div>
+	<script type="text/javascript" language="javascript">
+		j(document).ready(function() {
+			j("#simple_mouseover div.tabs").tabs("#simple_mouseover div.panes > div",{event:'mouseover'});
+		});
+	</script>
+	<div id="simple_mouseover">
+		<div class="tabs">
+			<span><a href="#">Tab 1</a></span>
+			<span><a href="#">Tab 2</a></span>
+			<span><a href="#">Tab 3</a></span>
+		</div>		
+		<div class="panes" >
+			<div>tab1中的内容</div>
+			<div>tab2中的内容</div>
+			<div>tab3中的内容</div>
+		</div>
+	</div>
+	<div class="separate"></div>
+	<div>Tab选项卡：ajax</div>
+	<script type="text/javascript" language="javascript">
+		j(document).ready(function() {
+			j("#ajax div.tabs").tabs("#ajax div.panes > div",{effect:'ajax'});
+		});
+	</script>
+	<div id="ajax">
+		<div class="tabs">
+			<span><a href="a.html">Tab 1</a></span>
+			<span><a href="b.html">Tab 2</a></span>
+			<span><a href="c.html">Tab 3</a></span>
+		</div>		
+		<div class="panes" >
+			<div></div>
+		</div>
+	</div>	
+	<div class="separate"></div>
+	<div>Tab选项卡：ajax no cache</div>
+	<script type="text/javascript" language="javascript">
+		j(document).ready(function() {
+			j("#ajax_no_cache div.tabs").tabs("#ajax_no_cache div.panes > div",{effect:'ajax'});
+		});
+	</script>
+	<div id="ajax_no_cache">
+		<div class="tabs">
+			<span><a href="a.html">Tab 1</a></span>
+			<span><a href="b.html">Tab 2</a></span>
+			<span><a href="c.html">Tab 3</a></span>
+		</div>		
+		<div class="panes" >
+			<div></div>
+		</div>
+	</div>	
+	<div class="separate"></div>
+	<div>Tab选项卡：iframe</div>
+	<script type="text/javascript" language="javascript">
+		j(document).ready(function() {
+			j("#iframe div.tabs").tabs("#iframe div.panes > div",{effect:'iframe'});
+		});
+	</script>
+	<div id="iframe">
+		<div class="tabs">
+			<span><a href="http://www.webf.cn">Tab 1</a></span>
+			<span><a href="http://www.baidu.com">Tab 2</a></span>
+			<span><a href="http://www.g.cn">Tab 3</a></span>
+		</div>		
+		<div class="panes">
+			<div style="height:300px;"></div>
+		</div>
+	</div>
+	<div class="separate"></div>
+	<div>Tab选项卡：iframes</div>
+	<script type="text/javascript" language="javascript">
+		j(document).ready(function() {
+			j("#iframes div.tabs").tabs("#iframes div.panes > div",{effect:'iframes'});
+		});
+	</script>
+	<div id="iframes">
+		<div class="tabs">
+			<span><a href="http://www.webf.cn">Tab 1</a></span>
+			<span><a href="http://www.baidu.com">Tab 2</a></span>
+			<span><a href="http://www.g.cn">Tab 3</a></span>
+		</div>		
+		<div class="panes">
+			<div style="height:300px;"></div>
+			<div style="height:300px;"></div>
+			<div style="height:300px;"></div>
+		</div>
+	</div>
+	<div class="separate"></div>
+	<div>Tab选项卡：iframes no cache</div>
+	<script type="text/javascript" language="javascript">
+		j(document).ready(function() {
+			j("#iframes_no_cache div.tabs").tabs("#iframes_no_cache div.panes > div",{effect:'iframes',cache:false});
+		});
+	</script>
+	<div id="iframes_no_cache">
+		<div class="tabs">
+			<span><a href="http://www.webf.cn">Tab 1</a></span>
+			<span><a href="http://www.baidu.com">Tab 2</a></span>
+			<span><a href="http://www.g.cn">Tab 3</a></span>
+		</div>		
+		<div class="panes">
+			<div style="height:300px;"></div>
+			<div style="height:300px;"></div>
+			<div style="height:300px;"></div>
+		</div>
+	</div>
+	<div class="separate"></div>
+	<div>Tab选项卡：complex</div>
+	<script type="text/javascript" language="javascript">
+		j(document).ready(function() {
+			j("#complex div.tabs").tabs("#complex div.panes > div",
+					{
+					 effect:'complex',
+					 sets:[
+								{fill:'default'},
+								{fill:'ajax'},
+								{fill:'ajax',cache:false},
+								{fill:'iframe'},
+								{fill:'iframe',cache:false}
+						   ]
+					}
+			);
+		});
+	</script>
+	<div id="complex">
+		<div class="tabs">
+			<span><a href="#">Tab 1</a></span>
+			<span><a href="a.html">Tab 2</a></span>
+			<span><a href="b.html">Tab 3 no cache</a></span>
+			<span><a href="http://www.baidu.cn">Tab 4</a></span>
+			<span><a href="http://www.g.cn">Tab 5 no cache</a></span>
+		</div>		
+		<div class="panes">
+			<div>tab1中的内容</div>
+			<div></div>
+			<div></div>
+			<div style="height:300px;"></div>
+			<div style="height:300px;"></div>
+		</div>
+	</div>
+</body>
+</html>

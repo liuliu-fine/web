@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+  <title>$!title</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <!-- <meta http-equiv="Cache-Control" content="no-siteapp"/>-->
+
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="SHANGBIN"/>
+
+  <link rel="stylesheet" href="assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="assets/css/common.css">
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="assets/js/amazeui/amazeui.min.js"></script>
+  <script src="js/jquery.cookie.js"></script>
+  <!--<script src="$base/common/js/jquery.md5.js"></script>-->
+  <script src="js/mweb.min.js"></script>
+
+  <!-- CONTEXT -->
+  <script type="text/javascript" language="javascript">
+    if (!navigator.cookieEnabled) {
+      location.href = "$base/mweb/miss_cookie.html";
+    }
+    var CONTEXT = "$base";
+    j.cookie("token", localStorage.token, {path: "/"});
+    var TOKEN = j.cookie("token") == "null" ? "" : j.cookie("token");
+    var SHOPID = j.cookie("shopId") == "null" ? "" : j.cookie("shopId");
+    var GUESTID = j.cookie("guestId") == "null" ? "" : j.cookie("guestId");
+
+  </script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+<div class="am-g">
+  <header data-am-widget="header"
+          class="am-header am-header-default bg-white am-animation-scale-down am-sticky">
+    <div class="am-header-left am-header-nav">
+      <a href="javascript:history.go(-1)">
+        <i class="iconfont text-orange am-text-lg">&#xe60a;</i>
+      </a>
+    </div>
+    <div class="am-header-title">
+      <div class="text-black am-text-truncate">kaishi</div>
+    </div>
+
+  </header>
+  <hr/>
+</div>
+<div style="height: 50px"></div>
+<!--content begin-->
+<div class="am-padding-xs am-text-center">请选择智付方案</div>
+<div>
+  <div class="plan">
+    <div class="am-padding-sm am-text-center"><img src="assets/images/pay/calc.png"><span id="page"></span></div>
+    <div class="plan-box">
+      <div class="left am-fl text-orange">
+        <div class="">实际支付</div>
+        <div class="am-text-xl" id="finalAmount"></div>
+      </div>
+      <div class="right">
+        <div class="choose" id="used">
+          <div class="text-grey">金额抵用</div>
+          <div class="content">
+            <div class="am-text-sm">
+              <span>left</span>
+              <span class="am-fr text-orange">right</span>
+            </div>
+          </div>
+          <hr class="am-margin-vertical-sm">
+        </div>
+        <div class="choose" id="get">
+          <div class="text-grey">付款后还可获得</div>
+          <div class="content">
+            <div class="am-text-sm">
+              <span>left</span>
+              <span class="am-fr text-orange">right</span>
+            </div>
+          </div>
+          <hr class="am-margin-vertical-sm">
+        </div>
+
+      </div>
+      <div class="unpart">
+        ndskdfskd
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div style="height: 70px"></div>-->
+<!--<div class="am-g footer-button" style="background: #BFDCEA">-->
+  <!--<div class="am-g am-margin-vertical-sm ">-->
+    <!--<div class="am-u-sm-12 am-text-center">-->
+      <!--<a href="login.vhtml?prompt" id="power">-->
+        <!--<button class="am-u-sm-10 am-u-sm-offset-1 am-btn am-radius bg-orange text-white">-->
+          <!--确定-->
+        <!--</button>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+<div style="height: 70px"></div>
+<div class="am-g footer-button" style="background: #BFDCEA">
+  <div class="am-g am-margin-sm am-padding-horizontal-xl">
+   <img class="am-fl icon" src="assets/images/pay/hat.png" >
+    <span class="text-black am-padding-left-sm am-text-sm">你有一个买单正在进行中...</span>
+    <span class="am-fr"><i class="iconfont am-text-primary">&#xe605;</i></span>
+  </div>
+</div>
+<div id="modal-alert"></div>
+<script>
+
+  var json = {
+    "code": 200,
+    "message": "operate successfully",
+    "result": {
+      "userId": "ea5d50027fab45b49fca6859a5f1a509",
+      "amount": 856,
+      "strategies": [{
+        "id": "574eb3bee4549da835ac2eee",
+        "needValidate": true,
+        "finalAmount": 788,
+        "used": [{"content": "使用充值卡支付", "amount": 68}, {"content": "使用充值卡支付", "amount": 68}],
+        "points": {"amount": 1712, "point": 94.16}
+      }, {
+        "id": "574eb3bee4549da835ac2ef1",
+        "needValidate": false,
+        "finalAmount": 856,
+        "used": [{"content": "使用充值卡支付", "amount": 68}],
+        "points": {"amount": 856, "point": 8.56},
+        "nonPart": {"name": "酒水，饮料", "amount": 80},
+        "coupons": [{
+          "coupon": {"name": "50元代金券", "time": "领取当月有效", "amount": 50, "currentAmount": 0},
+          "count": 3
+        }, {"coupon": {"name": "水煮鱼抵用卷", "time": "领取当月有效", "amount": 88, "currentAmount": 30}, "count": 1}]
+      }, {
+        "id": "574eb3bee4549da835ac2ef0",
+        "needValidate": false,
+        "finalAmount": 856,
+        "points": {"amount": 856, "point": 85.6}
+      }]
+    }
+  }
+  j(function () {
+    j("#modal-alert").load("/mweb/modal.html#payment");
+    j("header .am-text-truncate").html("账单金额￥" + json.result.amount);
+    var pre_html = j(".plan");
+    var strategies = json.result.strategies;
+    for (var i = 0; i < strategies.length; i++) {
+      var cloned_node = pre_html.clone(true);
+      cloned_node.find("#page").html(i + 1 + "/" + strategies.length);
+      cloned_node.find("#finalAmount").html(strategies[i].finalAmount);
+      cloned_node.attr("id", strategies[i].id);
+      if (strategies[i].used) {
+        var uses = "";
+        var used = j("#used .content").html();
+        for (var k = 0; k < strategies[i].used.length; k++) {
+          var use = used;
+          use = use.replace("left", strategies[i].used[k].content);
+          use = use.replace("right", "- ￥" + strategies[i].used[k].amount);
+          uses += use;
+          cloned_node.find("#used .content").append(uses);
+        }
+      } else {
+        cloned_node.find("#used").html("");
+      }
+      if (strategies[i].points) {
+        var use = j("#get .content").html();
+          use = use.replace("left", "积分");
+          use = use.replace("right", "+ " + strategies[i].points.point);
+          cloned_node.find("#get .content").append(use);
+      }
+      if(strategies[i].coupons){
+        var uses = "";
+        var used = j("#get .content").html();
+        for (var k = 0; k < strategies[i].coupons.length; k++) {
+          var use = used;
+          use = use.replace("left", strategies[i].coupons[k].coupon.name);
+          use = use.replace("right", strategies[i].coupons[k].count+"张");
+          uses += use;
+          cloned_node.find("#get .content").append(uses);
+        }
+      }
+      if(strategies[i].nonPart){
+        cloned_node.find(".unpart").html(strategies[i].nonPart.name+strategies[i].nonPart.amount);
+      }else{
+        cloned_node.find(".unpart").hide()
+      }
+
+      j(".plan").parent().append(cloned_node);
+
+    }
+    j(".plan:first").hide();
+    j(".am-text-sm:first-child").hide();
+    j(".plan-box").click(function(){
+
+      j(this).addClass("plan-box-focus");
+      j("#payment").modal({
+        relatedTarget: this,
+        onConfirm: function () {
+          window.location = "power.vhtml";
+        }
+        });
+
+    })
+
+  })
+
+</script>
+<!--content end-->
+</body>
+</html>

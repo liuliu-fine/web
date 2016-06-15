@@ -1,0 +1,108 @@
+#head_mweb("上宾-兑换活动")
+        #titlebar("兑换活动")
+
+<div class="am-padding-sm">
+    <div id="login" class="hide">
+        <strong>我的当前积分</strong><strong class="text-orange padding-xxs am-text-lg" id="amount"></strong>
+    </div>
+    <div id="unlogin" class="am-text-center hide">
+        <a href="login.vhtml">
+            <button class="am-btn am-text-sm border-radius" style="background-color: white;border:1px solid #ff6966">
+                <span class="text-orange">登录后可查看积分</span>
+            </button>
+        </a>
+    </div>
+</div>
+
+<div class="liner"></div>
+<div class="bg-grey-white am-padding-sm" id="project">兑换项目</div>
+
+<section id="content" class="hide">
+<div class="am-padding-sm">
+    <div class="am-g text-grey">
+        <div class="am-u-sm-offset-1 am-u-sm-11">
+            <div class="am-fr am-text-xs am-padding-bottom-xs">剩余 <strong class="text-orange">@count@</strong> 个</div>
+            <hr data-am-widget="divider" class="am-divider am-divider-dashed"/>
+        </div>
+    </div>
+    <div class="am-g am-padding-bottom-xs">
+        <div class="am-u-sm-1 am-padding-left-0 am-padding-top-xs">
+            <embed src="/mweb/assets/i/COUPONFREE.svg" type="image/svg+xml" class="icon"></embed>
+        </div>
+        <div class="am-u-sm-8 ">
+            <div>@content@</div>
+            <div class="am-text-xs text-grey">@date@</div>
+        </div>
+        <div class="am-u-sm-3 am-padding-left-0">
+            <div class="text-grey am-text-xs" style="padding-bottom: 3px">已有@usedCount@人抢兑</div>
+            <button class="am-btn am-btn-block border-radius bg-orange login text-white" onclick="exchange('@id@')"><span
+                    class="am-text-sm">立即抢兑</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="second-title" style="height: 7px"></div>
+</section>
+<div id="pop"></div>
+
+<script>
+rest("activity.exchange.get", {shopId: SHOPID}, function (data) {
+    if (data.RESULT_CODE == 0) {
+        if (data.RESULT_DATA.code == 200) {
+            var result = data.RESULT_DATA.result;
+            if (result.point != null) {
+                j("#unlogin").hide();
+                j("#login").show();
+                j("#project").html("当前可兑换");
+                j("#amount").html(result.point);
+            } else {
+                j("#unlogin").show();
+            }
+            var contents = "";
+            var value = j("#content").html();
+            for (var i in result.activity) {
+                var content = value;
+                if (result.activity[i].remainCount) {
+                    content = content.replace("@count@", result.activity[i].remainCount);
+                } else {
+                    content = content.replace('剩余 <strong class="text-orange">@count@</strong> 个', "不限");
+                }
+                content = content.replace("COUPONFREE", result.activity[i].type == "POINT_EXCHANGE" ? "VIP" : "COUPONFREE");
+                content = content.replace("@content@", result.activity[i].content);
+                content = content.replace("@date@", result.activity[i].effectiveTime || "");
+                content = content.replace("@usedCount@", result.activity[i].usedCount ? result.activity[i].usedCount : 0);
+                if (!result.activity[i].usedCount) {
+                    content = content.replace("@usedCount@", result.activity[i].usedCount);
+                }
+                if (result.point == null||!TOKEN) {
+                    content = content.replace("onclick=\"exchange('@id@')\"", "");
+                } else if (!result.activity[i].usable) {
+                    content = content.replace("bg-orange", "bg-grey");
+                    content = content.replace("login", "am-disabled");
+                }else{
+                    content = content.replace("login","");
+                    content = content.replace("@id@", result.activity[i].amount + "&" + result.activity[i].activityId + "&" + result.activity[i].ruleId);
+                }
+                contents += content;
+            }
+            j("#content").html(contents);
+            j('#content').show();
+            j("#pop").load("/mweb/modal.html#exchange");
+
+        }
+    } else {
+        msg(data.RESULT_DATA.ERROR_TITLE);
+    }
+}, function () {
+    msg("服务器请求错误")
+});
+
+
+j("body").on('click', ".login", function () {
+    window.location.href = "login.vhtml";
+
+});
+
+
+</script>
+        #foot_mweb()

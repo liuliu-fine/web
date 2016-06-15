@@ -1,0 +1,128 @@
+#head_mweb('上宾-买单请求')
+        #titlebar('请稍等...')
+        <!--content begin-->
+<div class="loader-bg">
+    <div class="loader"></div>
+    正在加载 ...
+</div>
+<section id="total" class="hide">
+<div class="payment">
+    <div class="am-fl left"><img src="$base/mweb/assets/images/pay/cafe.png"/></div>
+    <div class="right">
+        <div class="am-text-lg"><span id="table_id"></span>号桌已付款，请等候收银员确认</div>
+        <p>上宾智付实际消费 <span id="finalAmount"></span> ,<span style="text-decoration: line-through" id="amount"></span></p>
+    </div>
+</div>
+<div class="rule">
+    <div class="row">
+        <div class="text">
+            使用的智付优惠
+        </div>
+        <div id="use">
+            <div class="box">
+                <span class="left">@left</span>
+                <span class="right">@right</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text">
+            使用的智付优惠
+        </div>
+        <div id="get">
+            <div class="box">
+                <span class="left">@left</span>
+                <span class="right">@right</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="am-g procedure am-padding-sm done">
+    <div class="am-u-sm-offset-1 am-u-sm-10">
+        <div class="am-u-sm-5 ">
+            <div class="text">呼叫买单</div>
+            <div class="oval-icon "></div>
+            <div class="line"></div>
+        </div>
+        <div class="am-u-sm-5">
+            <div class="text">配置最佳优惠</div>
+            <div class="oval-icon"></div>
+            <div class="line"></div>
+
+        </div>
+        <div class="am-u-sm-2">
+            <div class="text">完成买单</div>
+            <div class="oval-icon-border">
+                <div class="oval-icon"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<img src="$base/mweb/assets/images/pay/run.gif" class="am-g am-u-sm-10 am-u-sm-offset-1 done"/>
+</section>
+<script>
+j(function () {
+    j("#table_id").html(j.cookie("table_id") || "");
+    j("header").append("<div class='am-header-right am-header-nav'><a onclick='cancel()'>取消买单</a></div>");
+    var init = setInterval(function () {
+        rest("check.state.get", {checkedId: j.cookie("check_id")}, function (data) {
+            if (data.RESULT_DATA.code == 200) {
+                var result = data.RESULT_DATA.result;
+                if (result.state == 3) {
+                    j("#finalAmount").html("￥" + result.strategy.finalAmount);
+                    j("#amount").html("原价￥" + result.amount);
+                    if (result.strategy.used) {
+                        var used = j("#use").html();
+                        for (var k = 0; k < result.strategy.used.length; k++) {
+                            var use = used;
+                            use = use.replace("@left", result.strategy.used[k].content);
+                            use = use.replace("@right", "- ￥" + result.strategy.used[k].amount);
+                            j("#use").parent().append(use);
+                        }
+                    } else {
+                        j("#use").parent().hide();
+                    }
+                    if (result.strategy.points) {
+                        var use = j("#get").html();
+                        use = use.replace("@left", "积分 " + result.strategy.points.point);
+                        use = use.replace("@right", "");
+                        j("#get").parent().append(use);
+                    }
+                    if (result.strategy.coupons) {
+                        var used = j("#get").html();
+                        for (var k = 0; k < result.strategy.coupons.length; k++) {
+                            var use = used;
+                            use = use.replace("@left", result.strategy.coupons[k].coupon.name);
+                            use = use.replace("@right", result.strategy.coupons[k].coupon.amount + "元 x " + result.strategy.coupons[k].count + "张");
+                            j("#get").append(use);
+                        }
+                    }
+                    if (!result.strategy.coupons && !result.strategy.points) {
+                        j("#get").hide();
+                    }
+                    j("#get .box:first").hide();
+                    j("#use .box:first").hide();
+                    j(".loader-bg").hide();
+                    j("#total").show();
+                }
+            }
+            else if (data.RESULT_DATA.code == 404000) {
+                if (!j("#finalAmount").html()) {
+                    alert("买单已完成！");
+                    location.href = "index.vhtml";
+                }
+                j(".am-text-truncate").html("买单成功");
+                j(".am-header-right a").text("我知道了");
+                j(".payment .right div").html(j.cookie("table_id") + "号桌已成功买单<span class='am-fr am-text-xs'>" + j.cookie("table_time"));
+                j(".done").hide();
+                init = window.clearInterval(init);
+
+            }
+
+        });
+    }, 5000);
+});
+
+</script>
+        <!--content end-->
+        #foot_mweb()

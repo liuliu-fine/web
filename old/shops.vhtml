@@ -1,0 +1,70 @@
+#head_mweb('上宾-商户列表')
+
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.3&key=0afc3e67ea501df6fbedfcdbaa727df9&plugin=AMap.Geocoder"></script>
+        </head>
+<body>
+
+<section>
+    <div class="am-padding-sm" id="current">
+        当前城市：
+        <a href="chooseCity.vhtml">
+            <span class="text-orange" id="city-name"></span>
+            <i class="iconfont text-orange">&#xe609;</i>
+        </a>
+    </div>
+    <hr/>
+    <div class="loader" id="loader">
+        <div class="loader-inner pacman">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div id="list" class="hide">
+        <a href="#" id="link">
+            <div class="am-g am-padding-sm text-grey index" id="@id@">
+                <div class="am-u-sm-3 am-padding-0">
+                    <img id="img" src="$base/mweb/assets/images/shop.png" class="am-padding-top-xs" width="80%" height="65px"/>
+                </div>
+                <div class="am-u-sm-9 am-padding-left-xs">
+                    <div class="am-g">
+                        <div class="am-fl text-black am-text-truncate">@brandName@</div>
+
+                    </div>
+                    <div class="am-g">
+                        <div style="width: 80%" class="am-fl am-text-sm"><span>@cai@</span><span class="padding-xxs">@address@</span>
+                        </div>
+                        <div class="am-fl am-text-xs am-text-right" style="width: 20%;margin-top: 4px">
+                            @distance@
+                        </div>
+                    </div>
+                    <div class="am-g am-text-sm">
+                        <span>@count@包厢/@table@散台</span><span class="padding-xxs">@money@</span>
+                    <span class="am-fr" id="icon">
+                        <embed src="/mweb/assets/i/VIP.svg" type="image/svg+xml" class="icon1" onclick="click(evt)"></embed>
+
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <hr/>
+    </div>
+    <div id="fail" class='am-g am-center hide' style="margin-top: 35%">
+        <div class="am-text-center" id="text">
+            所在城市还没有开通上宾服务哦~
+        </div>
+        <div class="am-text-center"><i class="iconfont" style="font-size: 70px;color: #ababab">&#xe619;</i>
+        </div>
+        <a href="chooseCity.vhtml?fail1">
+            <button class="am-u-sm-8 am-u-sm-offset-2 am-btn am-radius bg-orange text-white am-margin-top-lg">
+                重新选择城市
+            </button>
+        </a>
+    </div>
+</section>
+<script type="application/javascript" src="$base/mweb/assets/js/dest/shops.js"></script>
+#foot_mweb()

@@ -1,0 +1,203 @@
+/*全局样式*/
+*
+{
+	font-size:12px;
+	line-height:26px;
+}
+/*body*/
+body {
+	padding:10px;
+}
+/*文本框*/
+.text{
+	padding:0 2px;
+	width:150px;
+	height:18px;	
+	line-height:18px;	
+	border: 1px solid; 
+	border-color: #303030 #C0C0C0 #C0C0C0 #303030;	
+}
+.text1{
+	padding:0 2px;
+	width:300px;
+	height:18px;	
+	line-height:18px;	
+	border: 1px solid; 
+	border-color: #303030 #C0C0C0 #C0C0C0 #303030;	
+}
+.text2{
+	padding:0 2px;
+	width:600px;
+	height:18px;	
+	line-height:18px;	
+	border: 1px solid; 
+	border-color: #303030 #C0C0C0 #C0C0C0 #303030;	
+}
+/*大文本框*/
+.textarea{
+	padding:0 2px;
+	width:95%;
+	height:60px;
+	line-height:18px;	
+	border: 1px solid; 
+	border-color: #303030 #C0C0C0 #C0C0C0 #303030;	
+}
+.textarea1{
+	padding:0 2px;
+	width:95%;
+	height:120px;	
+	line-height:18px;	
+	border: 1px solid; 
+	border-color: #303030 #C0C0C0 #C0C0C0 #303030;	
+}
+.textarea2{
+	padding:0 2px;
+	width:95%;
+	height:240px;	
+	line-height:18px;	
+	border: 1px solid; 
+	border-color: #303030 #C0C0C0 #C0C0C0 #303030;	
+}
+/*按钮*/
+.button{
+	margin:5px 0;
+	padding:0 10px!important;
+	padding:2px 5px;  
+	padding-bottom:0;
+	font-size:12px;
+	line-height:14px;
+	color:#00559E;
+	border:1px solid; 	
+	border-color:#D4D0C8 #717171 #717171 #D4D0C8; 
+	background: #ECF3F9; 
+}
+/*注释*/
+.note{
+	display:inline-block;
+	margin-left:5px;
+	color:red;
+}
+/*高亮*/
+.highlight{
+	color:red;
+}
+/*当前位置  操作按钮*/
+.guide {
+	padding:0 5px;
+	color:#00559E;
+	border: 1px solid #99BBE8;
+	background-image: url(../images/hbg.gif);
+}
+.guide div.path {
+	float:left;
+	width:45%;
+	margin-bottom:0 !important;
+	margin-bottom:-1px;
+}
+.guide div.path span{
+	font-weight:bold;
+}
+.guide div.op {
+	float:right;
+	padding-top:3px;
+	width:45%;
+	text-align:right;
+	margin-bottom:0 !important;
+	margin-bottom:-1px;
+}
+.guide input.button{
+	margin:0;
+}
+/*表格*/
+.tb {
+	width: 100%;
+	border: 1px solid #99BBE8;
+	border-collapse: collapse;
+}
+.tb th{
+	padding:0 5px;
+	text-align:left;
+	font-weight:bold;
+	color:#00559E;
+	border: 1px solid #99BBE8;
+	background-image: url(../images/hbg.gif);
+}
+.tb th.checkbox{
+	width:20px;
+}
+.tb td {
+	padding:2px 5px;
+	text-align: left;
+	/* 如果是solid显示边框，在firefox中td的边框会盖住tb的边框
+	border: 1px solid #CADEF9;	
+	*/
+	border: 1px dashed #CCCCCC;	
+}
+.tb td a{
+	text-decoration:underline;
+}
+.tb td a:hover{
+	text-decoration:none;
+}
+.tb td.label {
+	width: 110px;
+	text-align: right;
+	color:#00559E;
+	background: #F7F7F7;	
+}
+.tb td.op {
+	text-align: center;
+	background: #F7F7F7;	
+}
+/*记录处理 分页 信息*/
+.recguide {
+}
+.recguide div.op {
+	float:left;
+	width:35%;
+}
+.recguide input.button{
+	margin:0;
+}
+.recguide div.page {
+	float:right;
+	padding-top:2px;
+	width:55%;
+	text-align:right;
+}
+.recguide div.page span{
+	display:inline-block;
+	float:left;
+	margin-right:5px;
+	padding:0 20px;
+	height: 18px;
+	text-align:center;
+	font-size:12px;
+	font-family:宋体;
+	line-height: 18px;
+	border: 1px solid #99BBE8;
+	background:#ECF3F9;
+	cursor:pointer;
+}
+.recguide div.page ul {
+	float: right;
+	list-style: none;
+}
+.recguide div.page ul li {
+	display: inline-block;
+	float: left;
+	margin-left: 5px;
+	padding:0 5px;
+	height: 18px;
+	font-family:宋体;
+	font-size:12px;
+	line-height: 18px;
+	border: 1px solid #99BBE8;
+}
+.recguide div.page ul li.selected {	
+	background:#ECF3F9;
+}
+.recguide div.page ul li a{	
+	height: 18px;
+	line-height: 18px;		
+}
