@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>我的生活</title>
+  <title>上宾"尊享支付，特权由你"</title>
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <link rel="shortcut icon" href="/favicon.ico">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="css/sm.css">
   <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+  <link rel="stylesheet" href="https://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
 
 </head>
 <body>
@@ -36,10 +36,22 @@
     </nav>
     <!---->
     <div class="content">
-      <img src="img/shop.png" class="width100">
+      <div class="">
+        <!-- Slider -->
+        <div class="swiper-container" data-space-between='10' style="z-index: 1">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img class="width100" src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <!--<img src="img/shop.png" class="width100">-->
       <div class="content">
         <div class="content-block">
-          <p><a class="icon icon-menu text-white pull-left open-panel" style="font-weight: 700"></a></p>
+          <p><a class="icon icon-menu text-white pull-left open-panel" style="font-weight: 700;z-index: 1000"></a></p>
         </div>
       </div>
       <div class="card line">
@@ -159,12 +171,16 @@
   <!--</div>-->
 </div>
 
-<script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='https://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='https://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='https://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
 <script>
   $.init();
-  $(".icon-menu").click();
+//  $(".icon-menu").click();
+  $(".swiper-container").swiper({
+    speed: 400,
+    spaceBetween: 100
+  });
 </script>
 </body>
 </html>
