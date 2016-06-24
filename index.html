@@ -9,26 +9,29 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <link rel="stylesheet" href="css/sm.css">
-  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="sui_assets/css/sm.css">
+  <link rel="stylesheet" href="sui_assets/css/common.css">
   <link rel="stylesheet" href="https://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
 
 </head>
 <body>
 <div class="page-group">
   <!-- 你的html代码 -->
-  <div class="page">
+  <div class="page page-current">
     <!--此可当做固定页头-->
-    <!--<header class="bar bar-nav">-->
-    <!--<span class="icon icon-menu"></span>-->
-    <!--<h1 class='title'>侧栏</h1>-->
-    <!--</header>-->
+    <header class="bar bar-nav">
+      <h1 class='title'>
+        <div class="pull-left"><img src="sui_assets/img/zhifu.png" class="icon"> 上宾会自动匹配最佳优惠</div>
+        <div class="pull-right"><a class="btn-orange">智付买单</a></div>
+
+      </h1>
+    </header>
     <!-- 工具栏 -->
     <nav class="bar bar-tab">
-      <!--<a class="tab-item external active" href="#">-->
-      <!--<span class="icon icon-home"></span>-->
-      <!--<span class="tab-label">今日可用活动</span>-->
-      <!--</a>-->
+      <a class="tab-item external active" href="#">
+      <span class="icon icon-home"></span>
+      <span class="tab-label">店面/智付</span>
+      </a>
       <a class="tab-item external" href="#">
         <span class="icon icon-settings"></span>
         <span class="tab-label">本店可用特权</span>
@@ -37,26 +40,27 @@
     <!---->
     <div class="content">
       <div class="">
-        <!-- Slider -->
-        <div class="swiper-container" data-space-between='10' style="z-index: 1">
+        <!--Slider-->
+        <div class="swiper-container" data-space-between='10'>
           <div class="swiper-wrapper">
-            <div class="swiper-slide"><img class="width100" src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
           </div>
           <div class="swiper-pagination"></div>
         </div>
       </div>
-
-      <!--<img src="img/shop.png" class="width100">-->
-      <div class="content">
-        <div class="content-block">
-          <p><a class="icon icon-menu text-white pull-left open-panel" style="font-weight: 700;z-index: 1000"></a></p>
-        </div>
+      <div class="menu">
+        <p><a class="icon icon-menu text-white pull-left open-panel"></a></p>
       </div>
       <div class="card line">
         <div class="card-content">
-          <div class="card-content-inner">这是一个用纯文本的简单卡片。但卡片可以包含自己的页头，页脚，列表视图，图像，和里面的任何元素。</div>
+          <div class="card-content-inner">
+            <div class="row">
+              <div class="col-60">
+                <div class="text-lg" id="shop-name"></div>
+                <div class="text-grey text-xs" id="table"></div>
+              </div>
+              <div class="col-40"><a href="power.vhtml" class="btn-orange pull-right">智付买单</a></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="title-separate">
@@ -74,72 +78,133 @@
           <a href="#" class="button button-fill pull-right">会员规则</a>
         </div>
       </div>
-      <hr/>
-      <div class="content-padded">
-        <div class="content-block-title"><img src="img/charge.png"><span class="text">招牌特价上新</span></div>
+
+
+      <div style="background: yellow">
+        <div class="content-block-title"><span class="text">g</span></div>
+
         <div class="list-block">
           <ul>
-            <li class="item-content  item-link">
+            <li class="item-content item-link">
               <div class="item-media"><i class="icon icon-f7"></i></div>
               <div class="item-inner">
-                <div class="item-title">商品名称</div>
-                <div class="item-after">杜蕾斯</div>
-              </div>
-            </li>
-            <li class="item-content  item-link">
-              <div class="item-media"><i class="icon icon-f7"></i></div>
-              <div class="item-inner">
-                <div class="item-title">型号</div>
-                <div class="item-after">极致超薄型</div>
+                <div class="item-title">
+                  <div class="name">w</div>
+                  <div class="grey text-xs">g</div>
+                  <br/>
+                </div>
+                <div class="item-after">g
+                </div>
               </div>
             </li>
           </ul>
         </div>
-        <div class="content-block-title"><img src="img/charge.png"><span class="text">招牌特价上新</span></div>
+      </div>
+      <div style="background: yellow">
+        <div class="content-block-title"><span class="text">g</span></div>
+
         <div class="list-block">
           <ul>
-            <li class="item-content  item-link">
+            <li class="item-content item-link">
               <div class="item-media"><i class="icon icon-f7"></i></div>
               <div class="item-inner">
-                <div class="item-title">商品名称</div>
-                <div class="item-after">杜蕾斯</div>
-              </div>
-            </li>
-            <li class="item-content  item-link">
-              <div class="item-media"><i class="icon icon-f7"></i></div>
-              <div class="item-inner">
-                <div class="item-title">型号</div>
-                <div class="item-after">极致超薄型</div>
+                <div class="item-title">
+                  <div class="name">w</div>
+                  <div class="grey text-xs">g</div>
+                  <br/>
+                </div>
+                <div class="item-after">g
+                </div>
               </div>
             </li>
           </ul>
         </div>
+      </div>
+
+      <div id="active-activity">
+        <div class="separate"></div>
+      </div>
+      <div id="activity">
+        <div class="title-separate">
+          <span class="line"></span>
+          智付自动优惠
+          <span class="line"></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="bg-add" id="activity-one">
+      <div class="content-block-title item-link">
+        <div class="pull-left">
+          <div class="text"></div>
+          <div class="grey second"></div>
+        </div>
+        <div class="grey pull-right">
+        </div>
+      </div>
+    </div>
+
+    <div class="content-padded" id="one">
+      <div class="content-block-title item-link">
+        <div class="pull-left">
+          <div class="text"></div>
+          <div class="grey second"></div>
+        </div>
+        <div class="grey pull-right">
+        </div>
+      </div>
+      <div class="list-block">
+        <ul></ul>
+      </div>
+    </div>
+    <div class="content-padded" id="more">
+      <div class="bg-empty">
+        <div class="content-block-title"><span class="text"></span></div>
+      </div>
+      <div class="list-block">
+        <ul>
+          <li class="item-content item-link">
+            <div class="item-media"><i class="icon icon-f7"></i></div>
+            <div class="item-inner">
+              <div class="item-title">
+                <div class="name">w</div>
+                <div class="grey text-xs"></div>
+                <br/>
+              </div>
+              <div class="item-after">
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
   <div class="panel-overlay"></div>
   <!-- Left Panel with Reveal effect -->
   <div class="panel panel-left panel-reveal" id='panel-left-demo'>
+    <div class="user-info">
+      <div><a href="#" class="close-panel pull-right">关闭</a>
+      </div>
       <div class="user-info">
-        <div><a href="#" class="close-panel pull-right">关闭</a>
-        </div>
-        <div class="user-info">
-        <img src="img/avatar.png" class="avater">
+        <img src="sui_assets/img/avatar.png" class="avater">
+        <div class="level">LV 3</div>
         <div>
-          <div>微信昵称 <img src="img/Female.png" class="icon"></div>
+          <div>微信昵称 <img src="sui_assets/img/Female.png" class="icon"></div>
           <div class="text-xs text-grey">你还没有加入本店会员</div>
           <div>马上领取，即享VIP优惠 <span class="icon icon-right pull-right"></span></div>
         </div>
-      </div></div>
-  <div class="content-block">
-
-      <div class="content-block-title">标题和副标题</div>
-      <div class="list-block">
+      </div>
+    </div>
+    <div class="content-block margin0">
+      <div class="list-block margin0">
         <ul>
           <li class="item-content  item-link">
             <div class="item-inner">
-              <div class="item-title text-black">出示身份证</div>
-              <div class="item-after text-xs"></div>
+              <div class="item-title text-black">出示身份码</div>
+              <div class="item-after text-xs"><img class="icon" src="sui_assets/img/code.png"></div>
             </div>
           </li>
           <li class="item-content  item-link">
@@ -148,18 +213,33 @@
               <div class="item-after text-xs">得生日好礼</div>
             </div>
           </li>
-          <li class="item-content  item-link">
+          <li class="item-content item-link">
             <div class="item-inner">
-              <div class="item-title text-black">186****7777</div>
+              <div class="item-title text-black">186****7777<br/></div>
               <div class="item-after text-xs">更换手机号</div>
             </div>
           </li>
-          <li class="item-content  item-link">
+          <li class="item-content item-link">
             <div class="item-inner">
               <div class="item-title text-black">重置密码</div>
             </div>
           </li>
         </ul>
+      </div>
+      <div class="qrcode card">
+        <div class="card-content">
+          <div class="card-content-inner">
+            长按识别关注本店，<br/>
+            在公众账号中便捷使用权益
+          </div>
+          <div id="qrcode">
+
+          </div>
+        </div>
+
+        <div>
+
+        </div>
       </div>
     </div>
 
@@ -174,13 +254,12 @@
 <script type='text/javascript' src='https://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='https://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='https://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='sui_assets/js/zepto.cookie.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='sui_assets/js/main.js' charset='utf-8'></script>
+<script type='text/javascript' src='sui_assets/js/qrcode.js' charset='utf-8'></script>
 <script>
-  $.init();
-//  $(".icon-menu").click();
-  $(".swiper-container").swiper({
-    speed: 400,
-    spaceBetween: 100
-  });
+  $("#active-activity .list-block").last().html('<img class="width100" src="./sui_assets/img/line-bottom.png">');
+
 </script>
 </body>
 </html>

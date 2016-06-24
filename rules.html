@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>上宾"尊享支付，特权由你"</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link rel="stylesheet" href="css/sm.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="https://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+
+</head>
+<body>
+<div class="page-group">
+
+<div class="page page-current" id='router'>
+  <header class="bar bar-nav">
+    <h1 class='title'>路由</h1>
+  </header>
+  <div class="content">
+    <div class="content-block">
+      <ul>
+        <li><a href="/docs-demos/router2">ajax加载新页面</a></li>
+        <li><a href="#router3">内联的新页面</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+  <div class="page" id='router1'>
+
+  <div id="total" class="hide">
+  <div class="am-padding-sm title-ing">
+    <div class="am-margin-vertical">
+      <img src="$base/mweb/assets/images/hui.png" style="vertical-align: text-bottom" alt=""/>
+      <span class="am-text-lg padding-xxs">会员招募进行中</span>
+    </div>
+  </div>
+  <div class="am-padding-sm" id="vip">
+    <div class="am-text-center text-orange">
+      <i class="iconfont text-orange padding-xxs">&#xe60d;</i>
+      <span class="padding-xxs" id="member-name">@@title@@</span>
+      <i class="iconfont text-orange padding-xxs">&#xe60d;</i>
+    </div>
+    <div class="border-radius am-margin-top-sm am-margin-bottom-lg"
+         style="background:url('$base/mweb/assets/images/oval.png') repeat-x bottom;border: solid #f0f0f0;border-width: 5px 2px 0 2px;">
+      <div class="am-padding">
+        <div class="text-orange" id="special">会员专享</div>
+        <div id="activity-name">
+          <div class="border-radius bg-grey-white am-margin-top-sm">
+            <div class="am-padding-sm">
+              @@name@@
+              <div class="am-text-xs text-grey" id="activity-time">@@time@@</div>
+            </div>
+          </div>
+        </div>
+        <div class="text-orange am-padding-vertical-sm" id="rule">入会规则</div>
+        <div id="upgrade">
+          <div class="am-g am-g-collapse">
+            <div class="am-u-sm-1 text-orange">
+              <i class="iconfont">&#xe60e;</i>
+            </div>
+            <div class="am-u-sm-8">
+              <div class="margin-push">
+                @@upgrade-name@@
+              </div>
+            </div>
+            <div class="am-u-sm-3" id="button">
+              11
+            </div>
+          </div>
+          <hr class="am-cf am-margin-vertical-sm"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  </div>
+<div id="modal-alert"></div>
+
+<!--登陆end-->
+<script type="application/javascript" src="$base/mweb/assets/js/vip.js"></script>
+</body>
+</html>

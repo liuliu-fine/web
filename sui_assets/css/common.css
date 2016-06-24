@@ -1,0 +1,416 @@
+.width100 {
+    width: 100%;
+}
+
+.text-white {
+    color: white;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    z-index: 1000;
+    font-weight: 700;
+    height: 100px;
+}
+
+.card.line {
+    position: relative;
+    top: -2.7rem;
+    margin: 0.3rem;
+    margin-bottom: -2.5rem;
+    border: 1px solid #ffffff;
+    padding: 0.2rem;
+    background: transparent;
+    box-shadow: 0 0 0 0;
+    z-index: 10;
+}
+
+.card.line .card-content {
+    background: #ffffff;
+    border-radius: 0.1rem;
+    box-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.3);
+}
+
+.title-separate {
+    background: url("../img/triangle.png") center no-repeat;
+    background-size: contain;
+    margin: 1.8rem auto;
+    height: 3rem;
+    line-height: 2.3rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.separate {
+    border-bottom: 1px solid #e7e7e7;
+    position: relative;
+    top: 0.5rem;
+
+}
+
+/*.title-separate .line {*/
+/*position: relative;*/
+/*top: -0.5rem;*/
+/*height: 1px;*/
+/*width: 3rem;*/
+/*margin: auto 10px;*/
+/*border-bottom: 1px solid red;*/
+/*padding: 0 20px;*/
+/*}*/
+
+.vip-card {
+    margin: -0.2rem 0.5rem 1.2rem 1.4rem;
+    background: url('../img/card.png') no-repeat;
+    background-size: contain;
+    height: 9rem;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+}
+
+.vip-card .text-xs {
+    padding-top: 3.5rem;
+    font-size: 0.8rem;
+}
+
+.vip-card .text-lg .button {
+    /*margin-right: 1.5rem;*/
+    margin-top: 3px;
+    background: transparent;
+    border: 1px solid #ffffff;
+    font-size: 0.5rem;
+}
+
+.vip-card .text-lg {
+    /*padding-top: 5rem;*/
+    font-size: 1.2rem;
+    margin-right: 20px
+}
+
+/*手写图标*/
+.content-block-title:before {
+    content: "";
+    float: left;
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-right: -1.5rem;
+}
+
+.CHARGE:before {
+    background: url("../img/charge.png") no-repeat center;
+    content: "";
+    background-size: 1.2rem 1.2rem;
+    padding: 10px;
+}
+
+.COUPONFREE:before {
+    background: url("../img/coupon.png") no-repeat center;
+    content: "";
+    background-size: 1.2rem 1.2rem;
+    padding: 10px;
+}
+
+.SPECIAL_PRICE .content-block-title:before {
+    content: "特";
+    color: #68D1DD;
+    border: 1px solid #68D1DD;
+    border-radius: 2px;
+    padding: 4px 6px 7px 5px;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+.POINT .content-block-title:before {
+    content: "积";
+    color: #9E86E0;
+    border: 1px solid #9E86E0;
+    border-radius: 2px;
+    padding: 4px 6px 7px 5px;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+.DISCOUNT .content-block-title:before {
+    content: "折";
+    color: #7FC2EE;
+    border: 1px solid #7FC2EE;
+    border-radius: 2px;
+    padding: 4px 6px 7px 5px;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+.COUPON .content-block-title:before {
+    content: "返";
+    color: #EFC962;
+    border: 1px solid #EFC962;
+    border-radius: 2px;
+    padding: 4px 6px 7px 5px;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+.EXCHANGE:before {
+    content: "换";
+    color: #ED4B39;
+    border: 1px solid #ED4B39;
+    border-radius: 2px;
+    padding: 4px 6px 7px 5px;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+.MEMBERUPGRADE:before {
+    content: "换";
+    color: yellow;
+    border: 1px solid yellow;
+    border-radius: 2px;
+    padding: 4px 6px 7px 5px;
+    margin-left: 5px;
+    /*margin-top: -2px;*/
+}
+
+/* 背景加上*/
+.bg-add .content-block-title {
+    margin: 0;
+}
+
+.bg-add {
+    padding: 1rem 0;
+    background: url("../img/bg-opacity.png") no-repeat 100%;
+}
+
+.bg-add.POINT, .bg-more.POINT .bg-empty {
+    background-color: #9E86E0;
+
+}
+
+.bg-add.COUPON, .bg-more.COUPON .bg-empty {
+    background-color: #EFC962;
+
+}
+
+.bg-add.DISCOUNT, .bg-more.DISCOUNT .bg-empty {
+    background-color: #7FC2EE;
+
+}
+
+.bg-add.SPECIAL_PRICE, .bg-more.SPECIAL_PRICE .bg-empty {
+    background-color: #68D1DD;
+
+}
+
+.bg-more .content-block-title {
+    margin: 0;
+}
+
+.bg-more .bg-empty {
+    background: url("../img/bg-opacity.png") no-repeat 100%;
+    padding: 1rem 0 2rem;
+    margin-bottom: -2rem;
+    z-index: 1000;
+}
+
+.bg-more .list-block .item-inner {
+    padding: 0;
+}
+
+.bg-more .list-block ul {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/*var map = {*/
+/*COUPONFREE: "送券",*/
+/*CHARGE: "充值",*/
+/*DISCOUNT: "打折",*/
+/*SPECIAL_PRICE: "特价",*/
+/*COUPON: "消费返券",*/
+/*POINT: "积分",*/
+/*POINTCONSUME: "积分抵现",*/
+/*CHARGECONSUME: "充值卡使用"*/
+/*};*/
+
+.content-block-title.item-link {
+    padding-right: 1.5rem;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUM0QzFDNzMyREM0MTFFNUJDNTI4OTMzMEE0RjBENzMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUM0QzFDNzQyREM0MTFFNUJDNTI4OTMzMEE0RjBENzMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1QzRDMUM3MTJEQzQxMUU1QkM1Mjg5MzMwQTRGMEQ3MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1QzRDMUM3MjJEQzQxMUU1QkM1Mjg5MzMwQTRGMEQ3MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pjs2Bb4AAAItSURBVHjazJhbK0RRGIb3DIOU/AG5kUTOgxmHceFGKf6BO+Vf+E8KKYcYg3FuMpNIDhFJXJAcp/GtvKumrzVs+zBrvfU2u689q6d3rb33+lYgl8tZvymZ3JOX7eQp8gT50fJA0Wj4z3tKbY5VR14hV5ObyWLkZ6sICtq4p4V8CjihevIWucoUQJFUmtUayTvkShMAL5DiGqs3IMlK3YBSgwrIZkBWmAAoIRMKyG2/IIMO/hMjbygepCS53ARAoQHyOqu1YbrLTADMAXJbASmSDOkGlOpTQHaQN72CdAuYBeQuq4cBWaIbUEJGC0Am3UIGPVoqMsk9Vu/CwxTQDSj0iSQPWD2C6Q7oBhT6AmRKAZkwAVDoowBkn+LdqQVQ6A2QhwrIuAmAEjKi2KrF/jPdfgIKveI7Pcfq/eSMCYBSD4pakymA0+RxVrsn15oAOEMeY7Vbcif5ys4ApT7CzZJHWO2G3I1fSyfgPHmY1a7x6bvT/ZpZUMBdOoHzI8El8pCiK+wq8CQXNcFlBdw51tyD00G9SnAVHV++zgDn6hzHiwTjCrgTTKvrQya3Ca5jA5CvY3IP+UlnTxJEb8zhjpDck1cL20mCAcBFWD2D2ovOvjiERojDpTGtnsL9N8EQegt+LJrC5vRN59lMORp0DrePNH2BswvYivXVzuoHSO7dz+2QHcAa6+eMOl87WHOffm8m7QCK7foog+tFi2mZACg3npPkRUxrtkitgvUtwAA5A3LWdzPizwAAAABJRU5ErkJggg==);
+    background-size: 0.7rem;
+    background-repeat: no-repeat;
+    background-position: 97% center;
+    background-position: -webkit-calc(100% - .5rem) center;
+    background-position: calc(100% - .5rem) center;
+}
+
+#activity .content-block-title .text {
+    width: 100%;
+}
+
+.content-block-title:NOT(.MEMBERUPGRADE) .text {
+    width: 7rem;
+}
+
+.content-block-title .text {
+    line-height: 1.4rem;
+    font-weight: 600;
+    margin-left: 2.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.content-block-title:not(.COUPONFREE):not(.CHARGE) .text {
+    margin-top: -4px;
+}
+
+.content-block-title:not(.COUPONFREE) .grey.pull-right {
+    line-height: 2rem;
+}
+
+#more li:first-child {
+    display: none;
+}
+
+.content-block-title .grey:not(.pull-right) {
+    font-size: 0.5rem;
+    margin-left: 2.2rem;
+    color: #8e8e93;
+
+}
+
+.text-black {
+    color: #111111;
+    font-weight: 600;
+}
+
+.text-xs {
+    font-size: 0.5rem;
+}
+
+.user-info {
+    padding: 1rem 0.5rem;
+    background: black;
+    font-size: 0.7rem;
+}
+
+/*61.160.235.13 sharejoy0520!@#$*/
+.user-info .avater {
+    float: left;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.5rem;
+}
+
+.level {
+    position: fixed;
+    top: 4.3rem;
+    left: 3rem;
+    background: #cba162;
+    border-radius: 5px;
+    font-size: 0.3rem;
+    padding: 0 5px;
+    letter-spacing: -1px;
+}
+
+.icon {
+    width: 15px;
+    height: 15px;
+    margin-bottom: 3px;
+}
+
+.text-grey {
+    color: #8e8e93;
+}
+
+.btn-orange {
+    background: #ff6966;
+    padding: 0.3rem 0.7rem;
+    border-radius: 5px;
+    color: #FFFFFF !important;
+    margin-top: 0.2rem;
+    text-align: center;
+}
+
+#more .content-block-title {
+    margin-bottom: -1rem;
+    z-index: 1000;
+}
+
+.up {
+    position: relative;
+    top: -.5rem;
+}
+
+#more .list-block .item-title {
+    top: 10px
+}
+
+.page-img {
+    width: 100%;
+    height: 14rem;
+}
+
+.margin0 {
+    margin: 0;
+}
+
+.qrcode {
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.3);
+    margin: 1.75rem;
+    font-size: 0.5rem;
+}
+
+.qrcode .card-content-inner {
+    color: black;
+    padding-bottom: 7rem;
+}
+
+#qrcode {
+    position: absolute;
+    top: 3.5rem;
+    left: 1.8rem;
+    /*right: 0;*/
+    text-align: center;
+    margin: 0;
+}
+
+/*bind----*/
+.text-orange {
+    color: #ff6966 !important;
+}
+
+#bind {
+    /*width: 70%;*/
+}
+
+#bind label {
+    background: #ff6966;
+    padding: 0.35rem 0.4rem 0.4rem;
+    color: white;
+    margin-right: -0.25rem;
+}
+
+#bind #code {
+    width: 12rem;
+    display: none;
+}
+#bind [type=tel] {
+    border: 1px solid #ff6966;
+    padding: 0.3rem .4rem;
+    margin-bottom: 1rem;
+    width: 10rem;
+}
+
+.text-center .btn-orange{
+    font-size: 0.8rem;
+    margin: 0 auto;
+    width: 12rem;
+}
+
+.btn-orange.disabled {
+    border-color: #c8c9cb;
+    background: #c8c9cb;
+    cursor: not-allowed;
+}
+
+

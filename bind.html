@@ -1,0 +1,117 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>我的生活</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link rel="stylesheet" href="sui_assets/css/sm.css">
+  <link rel="stylesheet" href="sui_assets/css/common.css">
+  <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+
+</head>
+<body>
+
+<div class="page-group">
+  <!-- 你的html代码 -->
+  <div class="page">
+    <header class="bar bar-nav">
+      <h1 class='title'>绑定手机
+        <a class="pull-right text-orange">以后绑定</a>
+      </h1>
+    </header>
+    <div class="content">
+      <div class="text-center">
+        <div class="text-orange content-padded">
+          绑定成功后，<br/>
+          您才可以参加活动尊享优惠哦~
+        </div>
+        <div id="bind">
+          <label for="tel">+86</label>
+          <input id="tel" name="tel" type="tel" placeholder="手机号码" oninput="validate.tel()"/>
+          <input id="code" name="code" type="tel" placeholder="请输入六位验证码"/>
+
+        </div>
+        <div class="btn-orange disabled">收取验证码</div>
+      </div>
+      <a class="button open-about open-popup">dddd</a>
+    </div>
+  </div>
+
+  <!-- About Popup -->
+  <div class="popup popup-about">
+    <div class="content-block">
+      <p>About</p>
+      <p><a href="#" class="close-popup">Close popup</a></p>
+      <p>Lorem ipsum dolor ...</p>
+    </div>
+  </div>
+  <!-- Services Popup -->
+  <div class="popup popup-services">
+    <div class="content-block">
+      <p>Services</p>
+      <p><a href="#" class="close-popup">Close popup</a></p>
+      <p>Lorem ipsum dolor ...</p>
+    </div>
+  </div>
+</div>
+<script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+
+<script>
+  var validate = {
+    tel: function () {
+      if ($("#tel").val().length == 11) {
+        $(".disabled").removeClass("disabled").addClass("code");
+      } else {
+        $(".btn-orange").addClass("disabled");
+      }
+    }
+  };
+  $("body").on("click", ".code", function () {
+    $("#code").show();
+    $(".btn-orange").addClass("disabled");
+    var second = 10;
+    var init = setInterval(function () {
+      second = second - 1;
+      rest("sms.bind.post", {"phone": $("#rel").val()});
+      $(".btn-orange").html("验证码已发送" + second + "s");
+      if ($("#code").val().length == 6 || second == 0) {
+        $(".disabled").removeClass("disabled").removeClass("code");
+        $(".btn-orange").html("确定");
+        window.clearInterval(init);
+      }
+    }, 1000)
+  });
+  $("body").on("click", ".submit", function () {
+    var data = rest("phone.bind.post", {"phone": $("#tel").val(), "validateCode": $("#code").val()});
+    if (data) {
+      alert("完成");
+    } else {
+      $(".btn-orange").removeClass("submit").addClass("code");
+
+    }
+  });
+  function time() {
+    var second = 10;
+    var init = setInterval(function () {
+      second = second - 1;
+      $(".btn-orange").html("验证码已发送" + second + "s");
+      if ($("#code").val().length == 6 || second == 0) {
+        $(".disabled").removeClass("disabled");
+        $(".btn-orange").html("确定");
+        window.clearInterval(init);
+      }
+
+    }, 1000)
+  }
+
+  $.init();
+
+</script>
+</body>
+</html>
